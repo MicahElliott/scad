@@ -13,8 +13,11 @@
 # Aliases
 #
 
-# p=d
-p=dd
+print 'in alias.zsh'
+alias asdf='echo hmmmmm'
+
+# Set a default prefix
+p=${SCAD_PREFIX-dd}
 
 GRC_INSTALLED=false
 GRC=''
@@ -57,168 +60,186 @@ alias dmv='_grc docker version'
 
 ## Builder (b)
 alias 'db?'='docker builder'
-alias dbH='docker builder   build --help'
-alias dbb='_grc docker builder build'
-alias dbB='_grc docker builder build --tag'
-alias dbpr='docker builder prune'
+alias ${p}bH='docker builder   build --help'
+alias ${p}bb='_grc docker builder build'
+alias ${p}bB='_grc docker builder build --tag'
+alias ${p}bpr='docker builder prune'
 
 ## conFig (f)
-alias dfcr='docker config create'
-alias dfin='docker config inspect'
-alias dfls='docker config ls'
-alias dfrm='docker config rm'
+alias ${p}fcr='docker config create'
+alias ${p}fin='docker config inspect'
+alias ${p}fls='docker config ls'
+alias ${p}frm='docker config rm'
 
 ## Container (c)
 # alias dc='docker container'
-alias dcH='docker container --help'
-alias 'dc?'='docker container'
-alias dC='docker container'
-alias dca='docker container attach'
-alias dcci='docker container commit'
-alias dccp='docker container cp'
-alias dccr='docker container create'
-alias dcd='docker container diff'
-alias dce='docker container exec'
-alias dcE='docker container exec -e COLUMNS=`tput cols` -e LINES=`tput lines` -i -t'
-alias dcex='docker container export'
-alias dcin='docker container inspect'
-alias dck='docker container kill'
-alias dcl='docker container logs'
-alias dcL='docker container logs -f'
-alias dcls='docker container ls'
-alias dcp='docker container pause'
-alias dcpt='docker container port'
-alias dcpr='docker container prune'
-alias dcrn='docker container rename'
-alias dcS='docker container restart'
-alias dcrm='docker container rm'
-alias dcr='docker container run'
-alias dcR='docker container run -e COLUMNS=`tput cols` -e LINES=`tput lines` -i -t --rm'
-alias dcRs='docker container run -e COLUMNS=`tput cols` -e LINES=`tput lines` -i -t --rm --entrypoint /bin/bash'
-alias dcs='docker container start'
-alias dcst='docker container stats'
-alias dcx='docker container stop'
-alias dctop='docker container top'
-alias dcP='docker container unpause'
-alias dcup='docker container update'
-alias dcw='docker container wait'
+alias ${p}cH='docker container --help'
+alias ${p}c'?'='docker container'
+alias ${p}C='docker container'
+alias ${p}ca='docker container attach'
+alias ${p}cci='docker container commit'
+alias ${p}ccp='docker container cp'
+alias ${p}ccr='docker container create'
+alias ${p}cd='docker container diff'
+alias ${p}ce='docker container exec'
+alias ${p}cE='docker container exec -e COLUMNS=`tput cols` -e LINES=`tput lines` -i -t'
+alias ${p}cex='docker container export'
+alias ${p}cin='docker container inspect'
+alias ${p}ck='docker container kill'
+alias ${p}cl='docker container logs'
+alias ${p}cL='docker container logs -f'
+alias ${p}cls='docker container ls'
+alias ${p}cp='docker container pause'
+alias ${p}cpt='docker container port'
+alias ${p}cpr='docker container prune'
+alias ${p}crn='docker container rename'
+alias ${p}cS='docker container restart'
+alias ${p}crm='docker container rm'
+alias ${p}cr='docker container run'
+alias ${p}cR='docker container run -e COLUMNS=`tput cols` -e LINES=`tput lines` -i -t --rm'
+alias ${p}cRs='docker container run -e COLUMNS=`tput cols` -e LINES=`tput lines` -i -t --rm --entrypoint /bin/bash'
+alias ${p}cs='docker container start'
+alias ${p}cst='docker container stats'
+alias ${p}cx='docker container stop'
+alias ${p}ctop='docker container top'
+alias ${p}cP='docker container unpause'
+alias ${p}cup='docker container update'
+alias ${p}cw='docker container wait'
 
 ## conteXt
-alias dxcr='docker context create'
-alias dxex='docker context export'
-alias dxim='docker context import'
-alias dxin='docker context inspect'
-alias dxls='docker context ls'
-alias dxrm='docker context rm'
-alias dxup='docker context update'
-alias dxu='docker context use'
+alias ${p}xcr='docker context create'
+alias ${p}xex='docker context export'
+alias ${p}xim='docker context import'
+alias ${p}xin='docker context inspect'
+alias ${p}xls='docker context ls'
+alias ${p}xrm='docker context rm'
+alias ${p}xup='docker context update'
+alias ${p}xu='docker context use'
 
 ## Image (i)
-alias 'di?'='docker image'
-alias dib='docker image build'
-alias dih='docker image history'
-alias diim='docker image import'
-alias diin='docker image inspect'
-alias dild='docker image load'
-alias dils='_grc docker image ls'
-alias dipr='docker image prune'
-alias dipl='_grc docker image pull'
-alias dipu='docker image push'
-alias dirm='docker image rm'
-alias disv='docker image save'
-alias dit='docker image tag'
+
+__SCAD_IMAGE_HELP="Docker IMAGE commands:
+${p}ib  —  Build an image from a Dockerfile
+${p}iB  —  Build an image with a tag
+${p}ih  — Show the history of an image
+${p}iim — Import the contents from a tarball to create a filesystem image
+${p}iin — Display detailed information on one or more images
+${p}ild — Load an image from a tar archive or STDIN
+${p}ils — List images
+${p}ipr — Remove unused images
+${p}ipl — Pull an image or a repository from a registry
+${p}iph — Push an image or a repository to a registry
+${p}irm — Remove one or more images
+${p}isv — Save one or more images to a tar archive (streamed to STDOUT by default)
+${p}it  — Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+"
+
+alias ${p}iH='echo $__SCAD_IMAGE_HELP'
+alias ${p}i'?'='docker image'
+alias ${p}ib='docker image build'
+alias ${p}iB='docker image build -t'
+alias ${p}ih='docker image history'
+alias ${p}iim='docker image import'
+alias ${p}iin='docker image inspect'
+alias ${p}ild='docker image load'
+alias ${p}ils='_grc docker image ls'
+alias ${p}ipr='docker image prune'
+alias ${p}ipl='_grc docker image pull'
+alias ${p}ipu='docker image push'
+alias ${p}irm='docker image rm'
+alias ${p}isv='docker image save'
+alias ${p}it='docker image tag'
 # missing from docker
-alias dis='_grc docker search'
+alias ${p}is='_grc docker search'
 
 ## Network (n)
 # alias dn='docker network'
-alias dncr='docker network create'
-alias dnc='docker network connect'
-alias dnx='docker network disconnect'
-alias dnin='docker network inspect'
-alias dnls='_grc docker network ls'
-alias dnpr='docker network prune'
-alias dnrm='docker network rm'
+alias ${p}ncr='docker network create'
+alias ${p}nc='docker network connect'
+alias ${p}nx='docker network disconnect'
+alias ${p}nin='docker network inspect'
+alias ${p}nls='_grc docker network ls'
+alias ${p}npr='docker network prune'
+alias ${p}nrm='docker network rm'
 
 ## Plugin (p)
-alias dpcr='docker plugin create'
-alias dpdi='docker plugin disable'
-alias dpen='docker plugin enable'
-alias dpin='docker plugin inspect'
-alias dpi='docker plugin install'
-alias dpls='docker plugin ls'
-alias dppu='docker plugin push'
-alias dprm='docker plugin rm'
-alias dps='docker plugin set'
-alias dpup='docker plugin upgrade'
+alias ${p}pcr='docker plugin create'
+alias ${p}pdi='docker plugin disable'
+alias ${p}pen='docker plugin enable'
+alias ${p}pin='docker plugin inspect'
+alias ${p}pi='docker plugin install'
+alias ${p}pls='docker plugin ls'
+alias ${p}ppu='docker plugin push'
+alias ${p}prm='docker plugin rm'
+alias ${p}ps='docker plugin set'
+alias ${p}pup='docker plugin upgrade'
 
 ## Zecret (z)
-alias dzcr='docker secret create'
-alias dzin='docker secret inspect'
-alias dzls='docker secret ls'
-alias dzrm='docker secret rm'
-
+alias ${p}zcr='docker secret create'
+alias ${p}zin='docker secret inspect'
+alias ${p}zls='docker secret ls'
+alias ${p}zrm='docker secret rm'
 
 ## Trust (t)
-alias dtkgen='docker trust key generate'
-alias dtkld='docker trust key load'
-alias dtsadd='docker trust signer add'
-alias dtsrm='docker trust signer remove'
-alias dtin='docker trust inspect'
-alias dtrm='docker trust revoke'
-alias dts='docker trust sign'
+alias ${p}tkgen='docker trust key generate'
+alias ${p}tkld='docker trust key load'
+alias ${p}tsadd='docker trust signer add'
+alias ${p}tsrm='docker trust signer remove'
+alias ${p}tin='docker trust inspect'
+alias ${p}trm='docker trust revoke'
+alias ${p}ts='docker trust sign'
 
 
 ## Volume (v)
 # alias dkv='docker volume'
-alias dvc='docker volume create'
-alias dvin='docker volume inspect'
-alias dvls='docker volume ls'
-alias dvpr='docker volume prune'
-alias dvrm='docker volume rm'
+alias ${p}vc='docker volume create'
+alias ${p}vin='docker volume inspect'
+alias ${p}vls='docker volume ls'
+alias ${p}vpr='docker volume prune'
+alias ${p}vrm='docker volume rm'
 
 ## System (y)
 # alias dy='docker system'
-alias dye='docker system events'
-alias dydf='docker system df'
-alias dyi='_grc docker system info'
-alias dypr='docker system prune'
+alias ${p}ye='docker system events'
+alias ${p}ydf='docker system df'
+alias ${p}yi='_grc docker system info'
+alias ${p}ypr='docker system prune'
 
 ## Stack (k)
 # alias dk='docker stack'
-alias dkd='docker stack deploy'
-alias dkls='docker stack ls'
-alias dkps='docker stack ps'
-alias dkrm='docker stack rm'
-alias dks='docker stack services'
+alias ${p}kd='docker stack deploy'
+alias ${p}kls='docker stack ls'
+alias ${p}kps='docker stack ps'
+alias ${p}krm='docker stack rm'
+alias ${p}ks='docker stack services'
 
 
 # docker Kompose (k)
-alias dk='docker-compose'
-alias dkb='docker-compose build'
-alias dkB='docker-compose build --no-cache'
-alias dkd='docker-compose down'
-alias dke='docker-compose exec -e COLUMNS=`tput cols` -e LINES=`tput lines`'
-alias dkk='docker-compose kill'
-alias dkl='docker-compose logs'
-alias dkL='docker-compose logs -f'
-alias dkls='_grc docker-compose ps'
-alias dkps='_grc docker-compose ps'
-alias dkp='docker-compose pause'
-alias dkP='docker-compose unpause'
-alias dkpl='docker-compose pull'
-alias dkph='docker-compose push'
-alias dkps='docker-compose ps'
-alias dkr='docker-compose run -e COLUMNS=`tput cols` -e LINES=`tput lines`'
-alias dkR='docker-compose run -e COLUMNS=`tput cols` -e LINES=`tput lines` --rm'
-alias dkrm='docker-compose rm'
-alias dks='docker-compose start'
-alias dksc='docker-compose scale'
-alias dkS='docker-compose restart'
-alias dku='docker-compose up'
-alias dkU='docker-compose up -d'
-alias dkv='docker-compose version'
-alias dkx='docker-compose stop'
+alias ${p}k='docker-compose'
+alias ${p}kb='docker-compose build'
+alias ${p}kB='docker-compose build --no-cache'
+alias ${p}kd='docker-compose down'
+alias ${p}ke='docker-compose exec -e COLUMNS=`tput cols` -e LINES=`tput lines`'
+alias ${p}kk='docker-compose kill'
+alias ${p}kl='docker-compose logs'
+alias ${p}kL='docker-compose logs -f'
+alias ${p}kls='_grc docker-compose ps'
+alias ${p}kps='_grc docker-compose ps'
+alias ${p}kp='docker-compose pause'
+alias ${p}kP='docker-compose unpause'
+alias ${p}kpl='docker-compose pull'
+alias ${p}kph='docker-compose push'
+alias ${p}kps='docker-compose ps'
+alias ${p}kr='docker-compose run -e COLUMNS=`tput cols` -e LINES=`tput lines`'
+alias ${p}kR='docker-compose run -e COLUMNS=`tput cols` -e LINES=`tput lines` --rm'
+alias ${p}krm='docker-compose rm'
+alias ${p}ks='docker-compose start'
+alias ${p}ksc='docker-compose scale'
+alias ${p}kS='docker-compose restart'
+alias ${p}ku='docker-compose up'
+alias ${p}kU='docker-compose up -d'
+alias ${p}kv='docker-compose version'
+alias ${p}kx='docker-compose stop'
 
 
 
@@ -259,39 +280,39 @@ alias dkrmV='docker volume rm $(docker volume ls -qf dangling=true)'
 
 
 drh() {
-    echo 'Docker Alias Help
+    echo "Docker Alias Help
 
 MOST COMMON
-  db Builder
-  dc Container
-  di Image
-  dn Network
-  dv Volume
+  ${p}b Builder
+  ${p}c Container
+  ${p}i Image
+  ${p}n Network
+  ${p}v Volume
 
 LESS COMMON
-  df conFig
-  dx conteXt
-  dp Plugin
-  ds Service
-  dt Trust
-  dy sYstem
-  da stAck
-  dx conteXt
-  dz Zecret
+  ${p}f conFig
+  ${p}x conteXt
+  ${p}p Plugin
+  ${p}s Service
+  ${p}t Trust
+  ${p}y sYstem
+  ${p}a stAck
+  ${p}x conteXt
+  ${p}z Zecret
 
 SYSTEMS
-  dk Kompose
-  dm Machine
+  ${p}k Kompose
+  ${p}m Machine
 
 HELP
-  d? help (this)
+  ${p}? help (this)
   --help (put on the end of any alias)
-  dr (docker itself, alone prints full help)
+  ${p}r (docker itself, alone prints full help)
 
 TIPS
   - Put command options at the end of any alias
   - Tab-complete after typing an alias
-  - Invoke the base command by capitalizing second letter'
+  - Invoke the base command by capitalizing second letter"
 }
 
 

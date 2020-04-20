@@ -51,6 +51,9 @@ to make alias completion differentiation sane.  This way typing
 
 ### run-help (M-h)
 
+See [this solution](https://stackoverflow.com/a/46415388/326516) for
+conveniently seeing alias definitions on-the-fly.
+
 ## Aliases
 
 ### Docker (basic commands)
