@@ -1,5 +1,6 @@
 # TODO
 # - fzf completers
+# - asccinema demo
 # - --help H to all
 # - add color to drH
 # - enable grc to supported commands
@@ -48,9 +49,10 @@ _grc() {
 # Docker
 # alias dk='docker'
 alias dr='docker'
-alias 'd?'=drH
-alias 'dr?'='docker --help'
-alias ${p}'?'='docker --help'
+alias ${p}'?'="_${p}HELP"
+# alias ${p}'?'=ddH
+alias ${p}H='docker --help'
+# alias ${p}'?'='docker --help'
 
 ## Misc (m)
 # alias dmdf=''
@@ -61,7 +63,7 @@ alias dmv='_grc docker version'
 
 
 ## Builder (b)
-alias 'db?'='docker builder'
+alias ${p}b'?'='docker builder'
 alias ${p}bH='docker builder   build --help'
 alias ${p}bb='_grc docker builder build'
 alias ${p}bB='_grc docker builder build --tag'
@@ -96,6 +98,7 @@ ${p}crn  — Rename a container
 ${p}cS   — ReStart one or more containers
 ${p}crm  — Remove one or more containers
 ${p}cr   — Run a command in a new container
+${p}crd  — Run in daemon/detached mode (use logs to see output)
 ${p}cri  — Run, interactive tty
 ${p}cris — Run, interactive, shell entrypoint
 ${p}cs   — Start one or more stopped containers
@@ -108,9 +111,9 @@ ${p}cw   — Wait/block until one or more containers stop, then print their exit
 "
 
 # alias dc='docker container'
-alias ${p}cH='docker container --help'
-alias ${p}c'?'='docker container'
-alias ${p}C='docker container'
+alias ${p}c'?'='echo $__SCAD_CONTAINER_HELP'
+alias ${p}cH='docker container'
+# alias ${p}C='docker container'
 alias ${p}ca='docker container attach'
 alias ${p}cci='docker container commit'
 alias ${p}ccp='docker container cp'
@@ -131,6 +134,7 @@ alias ${p}crn='docker container rename'
 alias ${p}cS='docker container restart'
 alias ${p}crm='docker container rm'
 alias ${p}cr='docker container run'
+alias ${p}crd='docker container run --detach'
 alias ${p}cri='docker container run -it --rm'
 alias ${p}cris='docker container run -it --rm --entrypoint /bin/bash'
 alias ${p}cs='docker container start'
@@ -169,8 +173,8 @@ ${p}isv — Save one or more images to a tar archive (streamed to STDOUT by defa
 ${p}it  — Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
 "
 
-alias ${p}iH='echo $__SCAD_IMAGE_HELP'
-alias ${p}i'?'='docker image'
+alias ${p}i'?'='echo $__SCAD_IMAGE_HELP'
+alias ${p}iH='docker image'
 alias ${p}ib='docker image build'
 alias ${p}iB='docker image build -t'
 alias ${p}ih='docker image history'
@@ -314,8 +318,7 @@ alias dkrmV='docker volume rm $(docker volume ls -qf dangling=true)'
 # alias dmx='docker-machine stop'
 
 
-drH ddH() {
-    echo "Docker Alias Help
+__SCAD_TOPLEVEL_HELP="Docker Alias Help
 
 MOST COMMON
   ${p}b Builder
@@ -343,13 +346,13 @@ SYSTEMS
 HELP
   ${p}? help (this)
   --help (put on the end of any alias)
-  ${p}r (docker itself, alone prints full help)
+  dr (docker itself, alone prints full help)
 
 TIPS
   - Put command options at the end of any alias
   - Tab-complete after typing an alias
   - Invoke the base command by capitalizing second letter"
-}
 
+_ddHELP () { echo $__SCAD_TOPLEVEL_HELP }
 
 unset p

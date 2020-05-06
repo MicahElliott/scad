@@ -1,7 +1,7 @@
 #  Shell Colorized Aliases for Docker (SCAD)
 
 Defines [Docker][1] aliases (and a few functions) for shells (zsh,
-bash, fish), with colorized output for many commands, and fuzzy (fzy)
+bash, fish), with colorized output for many commands, and fuzzy (fzf)
 completions.
 
 These aliases adhere to the [newer
