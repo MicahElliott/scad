@@ -1,7 +1,8 @@
 #  Shell Colorized Aliases for Docker (SCAD)
 
 Defines [Docker][1] aliases (and a few functions) for shells (zsh,
-bash, fish), with colorized output for many commands.
+bash, fish), with colorized output for many commands, and fuzzy (fzy)
+completions.
 
 These aliases adhere to the [newer
 style](https://blog.couchbase.com/docker-1-13-management-commands/) of
@@ -18,7 +19,7 @@ Docker command output.
 ### With [zplug][2]
 
 ```sh
-zplug "MicahElliott/zsh-docker-aliases"
+zplug "MicahElliott/scad"
 ```
 
 ## Usage Tips
@@ -215,4 +216,4 @@ conveniently seeing alias definitions on-the-fly.
 
 [1]: https://www.docker.com/
 [2]: https://github.com/zplug/zplug
-[3]: https://github.com/MicahElliott/zsh-docker-grc-aliases/issues
+[3]: https://github.com/MicahElliott/scad/issues
