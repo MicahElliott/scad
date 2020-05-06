@@ -1,8 +1,12 @@
 # TODO
+# - fzf completers
 # - --help H to all
-# - add color to drh
+# - add color to drH
 # - enable grc to supported commands
 # - pipe inspect commands into jq
+# - demo a la https://asciinema.org/a/247655
+# - remove long doc/descriptions in readme
+# - full help for each mgmt cmd
 
 #
 # Defines Docker aliases.
@@ -12,9 +16,6 @@
 #
 # Aliases
 #
-
-print 'in alias.zsh'
-alias asdf='echo hmmmmm'
 
 # Set a default prefix
 p=${SCAD_PREFIX-dd}
@@ -47,8 +48,9 @@ _grc() {
 # Docker
 # alias dk='docker'
 alias dr='docker'
-alias 'd?'=drh
+alias 'd?'=drH
 alias 'dr?'='docker --help'
+alias ${p}'?'='docker --help'
 
 ## Misc (m)
 # alias dmdf=''
@@ -72,6 +74,39 @@ alias ${p}fls='docker config ls'
 alias ${p}frm='docker config rm'
 
 ## Container (c)
+
+__SCAD_CONTAINER_HELP="Docker CONTAINER commands:
+${p}ca   — Attach local standard input, output, and error streams to a running container
+${p}cci  — Commit a new image from a container’s changes
+${p}ccp  — Copy files/folders between a container and the local filesystem
+${p}ccr  — Create a new image from a container’s changes
+${p}cd   — Diff/inspect changes to files or directories on a container’s filesystem
+${p}ce   — Exec-run a command in a running container
+${p}cei  — Exec-run interactive tty
+${p}cex  — Export a container’s filesystem as a tar archive
+${p}cin  — Inspec/display detailed information on one or more containers
+${p}ck   — Kill one or more running containers
+${p}cl   — Logs of a container
+${p}cL   — Logs, in follow mode
+${p}cls  — List containers
+${p}cp   — Pause all processes within one or more containers
+${p}cpt  — Port mappings list or a specific mapping for the container
+${p}cpr  — Prune/remove all stopped containers
+${p}crn  — Rename a container
+${p}cS   — ReStart one or more containers
+${p}crm  — Remove one or more containers
+${p}cr   — Run a command in a new container
+${p}cri  — Run, interactive tty
+${p}cris — Run, interactive, shell entrypoint
+${p}cs   — Start one or more stopped containers
+${p}cx   — Stop one or more running containers
+${p}cst  — Display a live stream of container(s) resource usage statistics
+${p}ctop — Top/display the running processes of a container
+${p}cP   — UnPause all processes within one or more containers
+${p}cup  — Update configuration of one or more containers
+${p}cw   — Wait/block until one or more containers stop, then print their exit codes
+"
+
 # alias dc='docker container'
 alias ${p}cH='docker container --help'
 alias ${p}c'?'='docker container'
@@ -82,7 +117,7 @@ alias ${p}ccp='docker container cp'
 alias ${p}ccr='docker container create'
 alias ${p}cd='docker container diff'
 alias ${p}ce='docker container exec'
-alias ${p}cE='docker container exec -e COLUMNS=`tput cols` -e LINES=`tput lines` -i -t'
+alias ${p}cei='docker container exec -it'
 alias ${p}cex='docker container export'
 alias ${p}cin='docker container inspect'
 alias ${p}ck='docker container kill'
@@ -96,8 +131,8 @@ alias ${p}crn='docker container rename'
 alias ${p}cS='docker container restart'
 alias ${p}crm='docker container rm'
 alias ${p}cr='docker container run'
-alias ${p}cR='docker container run -e COLUMNS=`tput cols` -e LINES=`tput lines` -i -t --rm'
-alias ${p}cRs='docker container run -e COLUMNS=`tput cols` -e LINES=`tput lines` -i -t --rm --entrypoint /bin/bash'
+alias ${p}cri='docker container run -it --rm'
+alias ${p}cris='docker container run -it --rm --entrypoint /bin/bash'
 alias ${p}cs='docker container start'
 alias ${p}cst='docker container stats'
 alias ${p}cx='docker container stop'
@@ -119,8 +154,8 @@ alias ${p}xu='docker context use'
 ## Image (i)
 
 __SCAD_IMAGE_HELP="Docker IMAGE commands:
-${p}ib  —  Build an image from a Dockerfile
-${p}iB  —  Build an image with a tag
+${p}ib  — Build an image from a Dockerfile
+${p}iB  — Build an image with a tag
 ${p}ih  — Show the history of an image
 ${p}iim — Import the contents from a tarball to create a filesystem image
 ${p}iin — Display detailed information on one or more images
@@ -219,7 +254,7 @@ alias ${p}k='docker-compose'
 alias ${p}kb='docker-compose build'
 alias ${p}kB='docker-compose build --no-cache'
 alias ${p}kd='docker-compose down'
-alias ${p}ke='docker-compose exec -e COLUMNS=`tput cols` -e LINES=`tput lines`'
+alias ${p}ke='docker-compose exec'
 alias ${p}kk='docker-compose kill'
 alias ${p}kl='docker-compose logs'
 alias ${p}kL='docker-compose logs -f'
@@ -230,8 +265,8 @@ alias ${p}kP='docker-compose unpause'
 alias ${p}kpl='docker-compose pull'
 alias ${p}kph='docker-compose push'
 alias ${p}kps='docker-compose ps'
-alias ${p}kr='docker-compose run -e COLUMNS=`tput cols` -e LINES=`tput lines`'
-alias ${p}kR='docker-compose run -e COLUMNS=`tput cols` -e LINES=`tput lines` --rm'
+alias ${p}kr='docker-compose run'
+alias ${p}kR='docker-compose run --rm'
 alias ${p}krm='docker-compose rm'
 alias ${p}ks='docker-compose start'
 alias ${p}ksc='docker-compose scale'
@@ -279,7 +314,7 @@ alias dkrmV='docker volume rm $(docker volume ls -qf dangling=true)'
 # alias dmx='docker-machine stop'
 
 
-drh() {
+drH ddH() {
     echo "Docker Alias Help
 
 MOST COMMON
@@ -292,6 +327,7 @@ MOST COMMON
 LESS COMMON
   ${p}f conFig
   ${p}x conteXt
+  ${p}h Help
   ${p}p Plugin
   ${p}s Service
   ${p}t Trust
