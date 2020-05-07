@@ -91,6 +91,7 @@ ${p}ck   — Kill one or more running containers
 ${p}cl   — Logs of a container
 ${p}cL   — Logs, in follow mode
 ${p}cls  — List containers
+${p}clsa — List ALL containers, even those not running
 ${p}cp   — Pause all processes within one or more containers
 ${p}cpt  — Port mappings list or a specific mapping for the container
 ${p}cpr  — Prune/remove all stopped containers
@@ -98,7 +99,7 @@ ${p}crn  — Rename a container
 ${p}cS   — ReStart one or more containers
 ${p}crm  — Remove one or more containers
 ${p}cr   — Run a command in a new container
-${p}crd  — Run in daemon/detached mode (use logs to see output)
+${p}crD  — Run in daemon/detached mode with name (use logs to see output)
 ${p}cri  — Run, interactive tty
 ${p}cris — Run, interactive, shell entrypoint
 ${p}cs   — Start one or more stopped containers
@@ -120,13 +121,14 @@ alias ${p}ccp='docker container cp'
 alias ${p}ccr='docker container create'
 alias ${p}cd='docker container diff'
 alias ${p}ce='docker container exec'
-alias ${p}cei='docker container exec -it'
+alias ${p}cei='docker container exec -i -t'
 alias ${p}cex='docker container export'
 alias ${p}cin='docker container inspect'
 alias ${p}ck='docker container kill'
 alias ${p}cl='docker container logs'
-alias ${p}cL='docker container logs -f'
+alias ${p}clf='docker container logs --follow'
 alias ${p}cls='docker container ls'
+alias ${p}clsa='docker container ls -a'
 alias ${p}cp='docker container pause'
 alias ${p}cpt='docker container port'
 alias ${p}cpr='docker container prune'
@@ -134,9 +136,9 @@ alias ${p}crn='docker container rename'
 alias ${p}cS='docker container restart'
 alias ${p}crm='docker container rm'
 alias ${p}cr='docker container run'
-alias ${p}crd='docker container run --detach'
-alias ${p}cri='docker container run -it --rm'
-alias ${p}cris='docker container run -it --rm --entrypoint /bin/bash'
+alias ${p}crD='docker container run --detach --name'
+alias ${p}cri='docker container run -i -t --rm'
+alias ${p}cris='docker container run -i -t --rm --entrypoint /bin/bash'
 alias ${p}cs='docker container start'
 alias ${p}cst='docker container stats'
 alias ${p}cx='docker container stop'
@@ -276,9 +278,11 @@ alias ${p}ks='docker-compose start'
 alias ${p}ksc='docker-compose scale'
 alias ${p}kS='docker-compose restart'
 alias ${p}ku='docker-compose up'
-alias ${p}kU='docker-compose up -d'
+alias ${p}kud='docker-compose up -d'
 alias ${p}kv='docker-compose version'
 alias ${p}kx='docker-compose stop'
+
+#${p}kudf () { docker-compose -f $1 up -d }
 
 
 

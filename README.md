@@ -4,8 +4,8 @@ Defines [Docker][1] aliases (and a few functions) for shells (zsh,
 bash, fish), with colorized output for many commands, and fuzzy (fzf)
 completions.
 
-These aliases adhere to the [newer
-style](https://blog.couchbase.com/docker-1-13-management-commands/) of
+These aliases adhere to the
+[newer style](https://blog.couchbase.com/docker-1-13-management-commands/) of
 organizing and invoking docker with *management commands* rather than
 the notoriously confusing “random solo commands”.
 
@@ -32,6 +32,10 @@ commands** (eg, `container`, `image`, `volume`), and **subsystems**
 `ps`, `build`).  The commands all start with a `dd` (by default,
 configurable) and take form like `ddcps` (*container ps*) and `ddcb`
 (*container build*).
+
+Any aliases that end with a capital letter require an extra argument.
+E.g., `ddcrD` means “run a docker container, in detached mode, with a
+name that must be specified.
 
 With such a voluminous set of commands, it’s helpful to use zsh’s tab
 completion constantly to see explore what you’re actually trying to
