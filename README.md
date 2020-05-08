@@ -100,6 +100,21 @@ LESS COMMON
 
 The help is all built in, so these won’t be documented in this README!
 
+You can get subcommand help by invoking it with `--help`:
+
+```shell
+❯ ddcr --help
+
+Usage:	docker container run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+Run a command in a new container
+
+Options:
+      --add-host list                  Add a custom host-to-IP mapping (host:ip)
+  -a, --attach list                    Attach to STDIN, STDOUT or STDERR
+…
+```
+
 ### Apropos
 
 You can search all commands help.  E.g., you know there’s some command

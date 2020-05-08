@@ -68,7 +68,7 @@ TODO
 "
 alias ${p}b'?'='echo $__SCAD_BUILDER_HELP'
 alias ${p}bH='docker builder'
-alias ${p}b'?'='docker builder'
+alias ${p}b='docker builder'
 alias ${p}bH='docker builder   build --help'
 alias ${p}bb='_grc docker builder build'
 alias ${p}bB='_grc docker builder build --tag'
@@ -79,6 +79,7 @@ __SCAD_CONFIG_HELP="
 TODO
 "
 alias ${p}f'?'='echo $__SCAD_CONFIG_HELP'
+alias ${p}f='docker config'
 alias ${p}fH='docker config'
 alias ${p}fcr='docker config create'
 alias ${p}fin='docker config inspect'
@@ -86,8 +87,8 @@ alias ${p}fls='docker config ls'
 alias ${p}frm='docker config rm'
 
 ## Container (c)
-
 __SCAD_CONTAINER_HELP="Docker CONTAINER commands:
+  ${p}c    — Invoke the bare docker container command
   ${p}ca   — Attach local standard input, output, and error streams to a running container
   ${p}cci  — Commit a new image from a container’s changes
   ${p}ccp  — Copy files/folders between a container and the local filesystem
@@ -106,7 +107,7 @@ __SCAD_CONTAINER_HELP="Docker CONTAINER commands:
   ${p}cpt  — Port mappings list or a specific mapping for the container
   ${p}cpr  — Prune/remove all stopped containers
   ${p}crn  — Rename a container
-  ${p}ccy   — Cycle/restart one or more containers
+  ${p}ccy  — Cycle/restart one or more containers
   ${p}crm  — Remove one or more containers
   ${p}cr   — Run a command in a new container
   ${p}crD  — Run in daemon/detached mode with name (use logs to see output)
@@ -123,6 +124,7 @@ __SCAD_CONTAINER_HELP="Docker CONTAINER commands:
 alias ${p}c'?'='echo $__SCAD_CONTAINER_HELP'
 alias ${p}cH='docker container'
 # alias ${p}C='docker container'
+alias ${p}c='docker container'
 alias ${p}ca='docker container attach'
 alias ${p}cci='docker container commit'
 alias ${p}ccp='docker container cp'
@@ -143,8 +145,8 @@ alias ${p}cpr='docker container prune'
 alias ${p}crn='docker container rename'
 alias ${p}ccy='docker container restart'
 alias ${p}crm='docker container rm'
-alias ${p}cr='docker container run'
-alias ${p}crD='docker container run --detach --name'
+alias ${p}cr='docker container run --rm'
+alias ${p}crD='docker container run --detach --rm --name'
 alias ${p}cri='docker container run -i -t --rm'
 alias ${p}cris='docker container run -i -t --rm --entrypoint /bin/bash'
 alias ${p}cs='docker container start'
@@ -160,6 +162,7 @@ __SCAD_CONTEXT_HELP="
 TODO
 "
 alias ${p}x'?'='echo $__SCAD_CONTEXT_HELP'
+alias ${p}x='docker context'
 alias ${p}xH='docker context'
 alias ${p}xcr='docker context create'
 alias ${p}xex='docker context export'
@@ -172,6 +175,7 @@ alias ${p}xu='docker context use'
 
 ## Image (i)
 __SCAD_IMAGE_HELP="Docker IMAGE commands:
+  ${p}i    — Invoke the bare docker image command
   ${p}ib   — Build an image from a Dockerfile
   ${p}iB   — Build an image with a tag
   ${p}ih   — Show the history of an image
@@ -186,6 +190,7 @@ __SCAD_IMAGE_HELP="Docker IMAGE commands:
   ${p}isv  — Save one or more images to a tar archive (streamed to STDOUT by default)
   ${p}it   — Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
 "
+alias ${p}i='docker image'
 alias ${p}i'?'='echo $__SCAD_IMAGE_HELP'
 alias ${p}iH='docker image'
 alias ${p}ib='docker image build'
@@ -210,6 +215,7 @@ TODO
 "
 alias ${p}n'?'='echo $__SCAD_NETWORK_HELP'
 alias ${p}nH='docker network'
+alias ${p}n='docker network'
 alias ${p}ncr='docker network create'
 alias ${p}nc='docker network connect'
 alias ${p}nx='docker network disconnect'
@@ -224,6 +230,7 @@ TODO
 "
 alias ${p}p'?'='echo $__SCAD_PLUGIN_HELP'
 alias ${p}pH='docker plugin'
+alias ${p}p='docker plugin'
 alias ${p}pcr='docker plugin create'
 alias ${p}pdi='docker plugin disable'
 alias ${p}pen='docker plugin enable'
@@ -241,6 +248,7 @@ TODO
 "
 alias ${p}z'?'='echo $__SCAD_SECRET_HELP'
 alias ${p}zH='docker secret'
+alias ${p}z='docker secret'
 alias ${p}zcr='docker secret create'
 alias ${p}zin='docker secret inspect'
 alias ${p}zls='docker secret ls'
@@ -252,6 +260,7 @@ TODO
 "
 alias ${p}t'?'='echo $__SCAD_TRUST_HELP'
 alias ${p}tH='docker trust'
+alias ${p}t='docker trust'
 alias ${p}tkgen='docker trust key generate'
 alias ${p}tkld='docker trust key load'
 alias ${p}tsadd='docker trust signer add'
@@ -267,6 +276,7 @@ TODO
 "
 alias ${p}v'?'='echo $__SCAD_VOLUME_HELP'
 alias ${p}vH='docker volume'
+alias ${p}v='docker volume'
 alias ${p}vc='docker volume create'
 alias ${p}vin='docker volume inspect'
 alias ${p}vls='docker volume ls'
@@ -290,6 +300,7 @@ TODO
 "
 alias ${p}k'?'='echo $__SCAD_STACK_HELP'
 alias ${p}kH='docker stack'
+alias ${p}k='docker stack'
 alias ${p}kd='docker stack deploy'
 alias ${p}kls='docker stack ls'
 alias ${p}kps='docker stack ps'
@@ -303,6 +314,7 @@ TODO
 "
 alias ${p}k'?'='echo $__SCAD_COMPOSE_HELP'
 alias ${p}kH='docker-compose'
+alias ${p}k='docker-compose'
 alias ${p}k='docker-compose'
 alias ${p}kb='docker-compose build'
 alias ${p}kB='docker-compose build --no-cache'
@@ -400,9 +412,9 @@ HELP
   dr (docker itself, alone prints full help)
 
 TIPS
-  - Put command options at the end of any alias
   - Tab-complete after typing an alias
-  - Invoke the base command by capitalizing second letter"
+  - Invoke the base command for more flexible explicit option use
+  - Put command options at the end of any alias"
 
 _ddHELP () { echo $__SCAD_TOPLEVEL_HELP }
 
