@@ -2,6 +2,8 @@
 
 Docker commands ~~are~~ were tedious to type.
 
+![ddils image listing](ddils.png)
+
 This project defines [Docker][1] aliases (and a few functions) for
 shells (zsh, bash, fish), with colorized output for many commands, and
 [fuzzy completions](https://github.com/jhawthorn/fzy).
