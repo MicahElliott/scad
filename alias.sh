@@ -96,7 +96,7 @@ ${p}cp   — Pause all processes within one or more containers
 ${p}cpt  — Port mappings list or a specific mapping for the container
 ${p}cpr  — Prune/remove all stopped containers
 ${p}crn  — Rename a container
-${p}cS   — ReStart one or more containers
+${p}ccy   — Cycle/restart one or more containers
 ${p}crm  — Remove one or more containers
 ${p}cr   — Run a command in a new container
 ${p}crD  — Run in daemon/detached mode with name (use logs to see output)
@@ -133,7 +133,7 @@ alias ${p}cp='docker container pause'
 alias ${p}cpt='docker container port'
 alias ${p}cpr='docker container prune'
 alias ${p}crn='docker container rename'
-alias ${p}cS='docker container restart'
+alias ${p}ccy='docker container restart'
 alias ${p}crm='docker container rm'
 alias ${p}cr='docker container run'
 alias ${p}crD='docker container run --detach --name'
@@ -263,7 +263,8 @@ alias ${p}kd='docker-compose down'
 alias ${p}ke='docker-compose exec'
 alias ${p}kk='docker-compose kill'
 alias ${p}kl='docker-compose logs'
-alias ${p}kL='docker-compose logs -f'
+alias ${p}kL='docker-compose logs --follow'
+alias ${p}klf='docker-compose logs --follow'
 alias ${p}kls='_grc docker-compose ps'
 alias ${p}kps='_grc docker-compose ps'
 alias ${p}kp='docker-compose pause'
@@ -276,15 +277,13 @@ alias ${p}kR='docker-compose run --rm'
 alias ${p}krm='docker-compose rm'
 alias ${p}ks='docker-compose start'
 alias ${p}ksc='docker-compose scale'
-alias ${p}kS='docker-compose restart'
+alias ${p}kcy='docker-compose restart'
 alias ${p}ku='docker-compose up'
 alias ${p}kud='docker-compose up -d'
 alias ${p}kv='docker-compose version'
 alias ${p}kx='docker-compose stop'
 
 #${p}kudf () { docker-compose -f $1 up -d }
-
-
 
 
 ## CleanUp (rm)

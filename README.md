@@ -24,22 +24,24 @@ zplug "MicahElliott/scad"
 
 ## Usage Tips
 
-This was put together with Zsh in mind; YMMV for bash/fish.
+This was put together with Zsh in mind; YMMV for other shells.
 
 These shell aliases are all short mnemonics for docker **management
 commands** (eg, `container`, `image`, `volume`), and **subsystems**
-(eg, `compose`), and **basic commands** (whose use is discouraged; eg,
-`ps`, `build`).  The commands all start with a `dd` (by default,
-configurable) and take form like `ddcps` (*container ps*) and `ddcb`
-(*container build*).
+(eg, `compose`), and just a few**basic commands** (whose use are
+discouraged; eg, `ps`, `build`).  The commands all start with a `dd`
+(by default, configurable) and take form like `ddcls` (*container ls*)
+and `ddcb` (*container build*).
 
 Any aliases that end with a capital letter require an extra argument.
 E.g., `ddcrD` means “run a docker container, in detached mode, with a
 name that must be specified.
 
 With such a voluminous set of commands, it’s helpful to use zsh’s tab
-completion constantly to see explore what you’re actually trying to
+completion constantly to explore what you’re actually trying to
 invoke.  Say you’re just looking for a basic command…
+
+«demonstration here»
 
 Think in terms of *management commands*: Containers, Images, Volumes,
 Networks, System, Daemon.
@@ -54,10 +56,47 @@ If you’re using (any parts of) oh-my-zsh, use `CASE_SENSITIVE="true"`
 to make alias completion differentiation sane.  This way typing
 `dc<tab>` will be distinguished from `dC<tab>`.
 
-### run-help (M-h)
+## Help System
+
+### run-help (bound to `M-h`)
 
 See [this solution](https://stackoverflow.com/a/46415388/326516) for
 conveniently seeing alias definitions on-the-fly.
+
+### Extra provided help
+
+All the management commands include a `?` suffixed command.  So you
+can see all the _container_ commands with:
+
+```shell
+% ddc?
+Docker CONTAINER commands:
+ddca   — Attach local standard input, output, and error streams to a running container
+ddcci  — Commit a new image from a container’s changes
+ddccp  — Copy files/folders between a container and the local filesystem
+…
+```
+
+There is a top-level help also:
+
+```shell
+% dd?
+Docker Alias Help
+
+MOST COMMON
+  ddb Builder
+  ddc Container
+  ddi Image
+  ddn Network
+  ddv Volume
+
+LESS COMMON
+  ddf conFig
+  ddx conteXt
+…
+```
+
+So these won’t all be documented in this README!
 
 ## Aliases
 
