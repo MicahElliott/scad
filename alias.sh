@@ -407,6 +407,6 @@ __SCAD_HELPS=( $__SCAD_TOPLEVEL_HELP
                $__SCAD_VOLUME_HELP
                $__SCAD_IMAGE_HELP
                $__SCAD_COMPOSE_HELP )
-dda() { for h in $__SCAD_HELPS; do echo $h; done | grep -E '^  dd\w+ +— ' | grep --color=always $1 }
+dda() { for h in $__SCAD_HELPS; do echo $h; done | grep -E '^  dd\w+ +— ' | grep -i --color=always $1 }
 
 unset p

@@ -108,8 +108,13 @@ it.  Use `dda` for apropos-searching.
 
 ```shell
 ❯ dda cpu
-
   ddcst  — Display a live stream of container(s) resource usage statistics (cpu, mem)
+
+❯ dda stop
+  ddcpr  — Prune/remove all stopped containers
+  ddcs   — Start one or more stopped containers
+  ddcx   — Stop one or more running containers
+  ddcw   — Wait/block until one or more containers stop, then print their exit codes
 ```
 
 ## Author
