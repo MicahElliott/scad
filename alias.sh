@@ -66,6 +66,8 @@ alias dmv='_grc docker version'
 __SCAD_BUILDER_HELP="
 TODO
 "
+alias ${p}b'?'='echo $__SCAD_BUILDER_HELP'
+alias ${p}bH='docker builder'
 alias ${p}b'?'='docker builder'
 alias ${p}bH='docker builder   build --help'
 alias ${p}bb='_grc docker builder build'
@@ -76,6 +78,8 @@ alias ${p}bpr='docker builder prune'
 __SCAD_CONFIG_HELP="
 TODO
 "
+alias ${p}f'?'='echo $__SCAD_CONFIG_HELP'
+alias ${p}fH='docker config'
 alias ${p}fcr='docker config create'
 alias ${p}fin='docker config inspect'
 alias ${p}fls='docker config ls'
@@ -116,8 +120,6 @@ __SCAD_CONTAINER_HELP="Docker CONTAINER commands:
   ${p}cup  — Update configuration of one or more containers
   ${p}cw   — Wait/block until one or more containers stop, then print their exit codes
 "
-
-# alias dc='docker container'
 alias ${p}c'?'='echo $__SCAD_CONTAINER_HELP'
 alias ${p}cH='docker container'
 # alias ${p}C='docker container'
@@ -157,6 +159,8 @@ alias ${p}cw='docker container wait'
 __SCAD_CONTEXT_HELP="
 TODO
 "
+alias ${p}x'?'='echo $__SCAD_CONTEXT_HELP'
+alias ${p}xH='docker context'
 alias ${p}xcr='docker context create'
 alias ${p}xex='docker context export'
 alias ${p}xim='docker context import'
@@ -204,7 +208,8 @@ alias ${p}is='_grc docker search'
 __SCAD_NETWORK_HELP="
 TODO
 "
-# alias dn='docker network'
+alias ${p}n'?'='echo $__SCAD_NETWORK_HELP'
+alias ${p}nH='docker network'
 alias ${p}ncr='docker network create'
 alias ${p}nc='docker network connect'
 alias ${p}nx='docker network disconnect'
@@ -217,6 +222,8 @@ alias ${p}nrm='docker network rm'
 __SCAD_PLUGIN_HELP="
 TODO
 "
+alias ${p}p'?'='echo $__SCAD_PLUGIN_HELP'
+alias ${p}pH='docker plugin'
 alias ${p}pcr='docker plugin create'
 alias ${p}pdi='docker plugin disable'
 alias ${p}pen='docker plugin enable'
@@ -232,16 +239,19 @@ alias ${p}pup='docker plugin upgrade'
 __SCAD_SECRET_HELP="
 TODO
 "
+alias ${p}z'?'='echo $__SCAD_SECRET_HELP'
+alias ${p}zH='docker secret'
 alias ${p}zcr='docker secret create'
 alias ${p}zin='docker secret inspect'
 alias ${p}zls='docker secret ls'
 alias ${p}zrm='docker secret rm'
 
+## Trust (t)
 __SCAD_TRUST_HELP="
 TODO
 "
-
-## Trust (t)
+alias ${p}t'?'='echo $__SCAD_TRUST_HELP'
+alias ${p}tH='docker trust'
 alias ${p}tkgen='docker trust key generate'
 alias ${p}tkld='docker trust key load'
 alias ${p}tsadd='docker trust signer add'
@@ -251,35 +261,35 @@ alias ${p}trm='docker trust revoke'
 alias ${p}ts='docker trust sign'
 
 
+## Volume (v)
 __SCAD_VOLUME_HELP="
 TODO
 "
-
-## Volume (v)
-# alias dkv='docker volume'
+alias ${p}v'?'='echo $__SCAD_VOLUME_HELP'
+alias ${p}vH='docker volume'
 alias ${p}vc='docker volume create'
 alias ${p}vin='docker volume inspect'
 alias ${p}vls='docker volume ls'
 alias ${p}vpr='docker volume prune'
 alias ${p}vrm='docker volume rm'
 
+## System (y)
 __SCAD_SYSTEM_HELP="
 TODO
 "
-
-## System (y)
-# alias dy='docker system'
+alias ${p}y'?'='echo $__SCAD_SYSTEM_HELP'
+alias ${p}yH='docker system'
 alias ${p}ye='docker system events'
 alias ${p}ydf='docker system df'
 alias ${p}yi='_grc docker system info'
 alias ${p}ypr='docker system prune'
 
+## Stack (k)
 __SCAD_STACK_HELP="
 TODO
 "
-
-## Stack (k)
-# alias dk='docker stack'
+alias ${p}k'?'='echo $__SCAD_STACK_HELP'
+alias ${p}kH='docker stack'
 alias ${p}kd='docker stack deploy'
 alias ${p}kls='docker stack ls'
 alias ${p}kps='docker stack ps'
@@ -287,11 +297,12 @@ alias ${p}krm='docker stack rm'
 alias ${p}ks='docker stack services'
 
 
+# docker Kompose (k)
 __SCAD_COMPOSE_HELP="
 TODO
 "
-
-# docker Kompose (k)
+alias ${p}k'?'='echo $__SCAD_COMPOSE_HELP'
+alias ${p}kH='docker-compose'
 alias ${p}k='docker-compose'
 alias ${p}kb='docker-compose build'
 alias ${p}kB='docker-compose build --no-cache'

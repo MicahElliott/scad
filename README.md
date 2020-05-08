@@ -71,7 +71,7 @@ All the management commands include a `?` suffixed command.  So you
 can see all the _container_ commands with:
 
 ```shell
-% ddc?
+❯ ddc?
 Docker CONTAINER commands:
 ddca   — Attach local standard input, output, and error streams to a running container
 ddcci  — Commit a new image from a container’s changes
@@ -82,7 +82,7 @@ ddccp  — Copy files/folders between a container and the local filesystem
 There is a top-level help also:
 
 ```shell
-% dd?
+❯ dd?
 Docker Alias Help
 
 MOST COMMON
@@ -98,13 +98,13 @@ LESS COMMON
 …
 ```
 
-So these won’t all be documented in this README!
+The help is all built in, so these won’t be documented in this README!
 
 ### Apropos
 
-You can search all commands help!  You know there’s some command to
-show you some top-like status of your containers, but you can’t think
-it.  Use `dda` for apropos-searching.
+You can search all commands help.  E.g., you know there’s some command
+to show you some top-like status of your containers, but you can’t
+think it.  Use `dda` for apropos-searching.
 
 ```shell
 ❯ dda cpu
