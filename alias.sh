@@ -58,8 +58,13 @@ alias ${p}H='docker --help'
 # alias dmdf=''
 # alias dme=''
 # alias dm=''
-alias dms='_grc docker search'
-alias dmv='_grc docker version'
+alias ${p}ms='_grc docker search'
+alias ${p}mv='_grc docker version'
+
+alias ${p}mrmv='docker volume rm $(docker volume ls -f dangling=true -q)'
+
+
+
 
 
 ## Builder (b)
@@ -390,9 +395,11 @@ MOST COMMON
   ${p}v Volume
 
 LESS COMMON
+  ${p}a Apropos
   ${p}f conFig
   ${p}x conteXt
   ${p}h Help
+  ${p}m Misc (one-off commands)
   ${p}p Plugin
   ${p}s Service
   ${p}t Trust
