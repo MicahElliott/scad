@@ -98,6 +98,23 @@ LESS COMMON
 
 So these won’t all be documented in this README!
 
+### Apropos
+
+You can search all commands help!
+
+
+### Apropos
+
+You can search all commands help!  You know there’s some command to
+show you some top-like status of your containers, but you can’t think
+it.  Use `dda` for apropos-searching.
+
+```shell
+❯ dda cpu
+
+  ddcst  — Display a live stream of container(s) resource usage statistics (cpu, mem)
+```
+
 ## Aliases
 
 ### Docker (basic commands)

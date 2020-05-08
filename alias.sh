@@ -63,6 +63,9 @@ alias dmv='_grc docker version'
 
 
 ## Builder (b)
+__SCAD_BUILDER_HELP="
+TODO
+"
 alias ${p}b'?'='docker builder'
 alias ${p}bH='docker builder   build --help'
 alias ${p}bb='_grc docker builder build'
@@ -70,6 +73,9 @@ alias ${p}bB='_grc docker builder build --tag'
 alias ${p}bpr='docker builder prune'
 
 ## conFig (f)
+__SCAD_CONFIG_HELP="
+TODO
+"
 alias ${p}fcr='docker config create'
 alias ${p}fin='docker config inspect'
 alias ${p}fls='docker config ls'
@@ -78,37 +84,37 @@ alias ${p}frm='docker config rm'
 ## Container (c)
 
 __SCAD_CONTAINER_HELP="Docker CONTAINER commands:
-${p}ca   — Attach local standard input, output, and error streams to a running container
-${p}cci  — Commit a new image from a container’s changes
-${p}ccp  — Copy files/folders between a container and the local filesystem
-${p}ccr  — Create a new image from a container’s changes
-${p}cd   — Diff/inspect changes to files or directories on a container’s filesystem
-${p}ce   — Exec-run a command in a running container
-${p}cei  — Exec-run interactive tty
-${p}cex  — Export a container’s filesystem as a tar archive
-${p}cin  — Inspec/display detailed information on one or more containers
-${p}ck   — Kill one or more running containers
-${p}cl   — Logs of a container
-${p}cL   — Logs, in follow mode
-${p}cls  — List containers
-${p}clsa — List ALL containers, even those not running
-${p}cp   — Pause all processes within one or more containers
-${p}cpt  — Port mappings list or a specific mapping for the container
-${p}cpr  — Prune/remove all stopped containers
-${p}crn  — Rename a container
-${p}ccy   — Cycle/restart one or more containers
-${p}crm  — Remove one or more containers
-${p}cr   — Run a command in a new container
-${p}crD  — Run in daemon/detached mode with name (use logs to see output)
-${p}cri  — Run, interactive tty
-${p}cris — Run, interactive, shell entrypoint
-${p}cs   — Start one or more stopped containers
-${p}cx   — Stop one or more running containers
-${p}cst  — Display a live stream of container(s) resource usage statistics
-${p}ctop — Top/display the running processes of a container
-${p}cP   — UnPause all processes within one or more containers
-${p}cup  — Update configuration of one or more containers
-${p}cw   — Wait/block until one or more containers stop, then print their exit codes
+  ${p}ca   — Attach local standard input, output, and error streams to a running container
+  ${p}cci  — Commit a new image from a container’s changes
+  ${p}ccp  — Copy files/folders between a container and the local filesystem
+  ${p}ccr  — Create a new image from a container’s changes
+  ${p}cd   — Diff/inspect changes to files or directories on a container’s filesystem
+  ${p}ce   — Exec-run a command in a running container
+  ${p}cei  — Exec-run interactive tty
+  ${p}cex  — Export a container’s filesystem as a tar archive
+  ${p}cin  — Inspec/display detailed information on one or more containers
+  ${p}ck   — Kill one or more running containers
+  ${p}cl   — Logs of a container
+  ${p}cL   — Logs, in follow mode
+  ${p}cls  — List containers
+  ${p}clsa — List ALL containers, even those not running
+  ${p}cp   — Pause all processes within one or more containers
+  ${p}cpt  — Port mappings list or a specific mapping for the container
+  ${p}cpr  — Prune/remove all stopped containers
+  ${p}crn  — Rename a container
+  ${p}ccy   — Cycle/restart one or more containers
+  ${p}crm  — Remove one or more containers
+  ${p}cr   — Run a command in a new container
+  ${p}crD  — Run in daemon/detached mode with name (use logs to see output)
+  ${p}cri  — Run, interactive tty
+  ${p}cris — Run, interactive, shell entrypoint
+  ${p}cs   — Start one or more stopped containers
+  ${p}cx   — Stop one or more running containers
+  ${p}cst  — Display a live stream of container(s) resource usage statistics (cpu, mem)
+  ${p}ctop — Top/display the running processes of a container
+  ${p}cP   — UnPause all processes within one or more containers
+  ${p}cup  — Update configuration of one or more containers
+  ${p}cw   — Wait/block until one or more containers stop, then print their exit codes
 "
 
 # alias dc='docker container'
@@ -148,6 +154,9 @@ alias ${p}cup='docker container update'
 alias ${p}cw='docker container wait'
 
 ## conteXt
+__SCAD_CONTEXT_HELP="
+TODO
+"
 alias ${p}xcr='docker context create'
 alias ${p}xex='docker context export'
 alias ${p}xim='docker context import'
@@ -158,23 +167,21 @@ alias ${p}xup='docker context update'
 alias ${p}xu='docker context use'
 
 ## Image (i)
-
 __SCAD_IMAGE_HELP="Docker IMAGE commands:
-${p}ib  — Build an image from a Dockerfile
-${p}iB  — Build an image with a tag
-${p}ih  — Show the history of an image
-${p}iim — Import the contents from a tarball to create a filesystem image
-${p}iin — Display detailed information on one or more images
-${p}ild — Load an image from a tar archive or STDIN
-${p}ils — List images
-${p}ipr — Remove unused images
-${p}ipl — Pull an image or a repository from a registry
-${p}iph — Push an image or a repository to a registry
-${p}irm — Remove one or more images
-${p}isv — Save one or more images to a tar archive (streamed to STDOUT by default)
-${p}it  — Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  ${p}ib   — Build an image from a Dockerfile
+  ${p}iB   — Build an image with a tag
+  ${p}ih   — Show the history of an image
+  ${p}iim  — Import the contents from a tarball to create a filesystem image
+  ${p}iin  — Display detailed information on one or more images
+  ${p}ild  — Load an image from a tar archive or STDIN
+  ${p}ils  — List images
+  ${p}ipr  — Remove unused images
+  ${p}ipl  — Pull an image or a repository from a registry
+  ${p}iph  — Push an image or a repository to a registry
+  ${p}irm  — Remove one or more images
+  ${p}isv  — Save one or more images to a tar archive (streamed to STDOUT by default)
+  ${p}it   — Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
 "
-
 alias ${p}i'?'='echo $__SCAD_IMAGE_HELP'
 alias ${p}iH='docker image'
 alias ${p}ib='docker image build'
@@ -194,6 +201,9 @@ alias ${p}it='docker image tag'
 alias ${p}is='_grc docker search'
 
 ## Network (n)
+__SCAD_NETWORK_HELP="
+TODO
+"
 # alias dn='docker network'
 alias ${p}ncr='docker network create'
 alias ${p}nc='docker network connect'
@@ -204,6 +214,9 @@ alias ${p}npr='docker network prune'
 alias ${p}nrm='docker network rm'
 
 ## Plugin (p)
+__SCAD_PLUGIN_HELP="
+TODO
+"
 alias ${p}pcr='docker plugin create'
 alias ${p}pdi='docker plugin disable'
 alias ${p}pen='docker plugin enable'
@@ -216,10 +229,17 @@ alias ${p}ps='docker plugin set'
 alias ${p}pup='docker plugin upgrade'
 
 ## Zecret (z)
+__SCAD_SECRET_HELP="
+TODO
+"
 alias ${p}zcr='docker secret create'
 alias ${p}zin='docker secret inspect'
 alias ${p}zls='docker secret ls'
 alias ${p}zrm='docker secret rm'
+
+__SCAD_TRUST_HELP="
+TODO
+"
 
 ## Trust (t)
 alias ${p}tkgen='docker trust key generate'
@@ -231,6 +251,10 @@ alias ${p}trm='docker trust revoke'
 alias ${p}ts='docker trust sign'
 
 
+__SCAD_VOLUME_HELP="
+TODO
+"
+
 ## Volume (v)
 # alias dkv='docker volume'
 alias ${p}vc='docker volume create'
@@ -239,12 +263,20 @@ alias ${p}vls='docker volume ls'
 alias ${p}vpr='docker volume prune'
 alias ${p}vrm='docker volume rm'
 
+__SCAD_SYSTEM_HELP="
+TODO
+"
+
 ## System (y)
 # alias dy='docker system'
 alias ${p}ye='docker system events'
 alias ${p}ydf='docker system df'
 alias ${p}yi='_grc docker system info'
 alias ${p}ypr='docker system prune'
+
+__SCAD_STACK_HELP="
+TODO
+"
 
 ## Stack (k)
 # alias dk='docker stack'
@@ -254,6 +286,10 @@ alias ${p}kps='docker stack ps'
 alias ${p}krm='docker stack rm'
 alias ${p}ks='docker stack services'
 
+
+__SCAD_COMPOSE_HELP="
+TODO
+"
 
 # docker Kompose (k)
 alias ${p}k='docker-compose'
@@ -347,6 +383,7 @@ SYSTEMS
   ${p}m Machine
 
 HELP
+  ${p}a apropos (search for any keyword in command descriptions)
   ${p}? help (this)
   --help (put on the end of any alias)
   dr (docker itself, alone prints full help)
@@ -357,5 +394,19 @@ TIPS
   - Invoke the base command by capitalizing second letter"
 
 _ddHELP () { echo $__SCAD_TOPLEVEL_HELP }
+
+# Apropos
+__SCAD_HELPS=( $__SCAD_TOPLEVEL_HELP
+               $__SCAD_CONTAINER_HELP
+               $__SCAD_BUILDER_HELP
+               $__SCAD_CONFIG_HELP
+               $__SCAD_NETWORK_HELP
+               $__SCAD_TRUST_HELP
+               $__SCAD_SYSTEM_HELP
+               $__SCAD_SECRET_HELP
+               $__SCAD_VOLUME_HELP
+               $__SCAD_IMAGE_HELP
+               $__SCAD_COMPOSE_HELP )
+dda() { for h in $__SCAD_HELPS; do echo $h; done | grep -E '^  dd\w+ +— ' | grep --color=always $1 }
 
 unset p
