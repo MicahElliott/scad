@@ -1,3 +1,9 @@
+# source this file, or add to your plugin manager
+#
+# Defines Docker aliases.
+#
+# Author: Micah Elliott
+
 # TODO
 # - fzf completers
 # - asccinema demo
@@ -9,16 +15,7 @@
 # - remove long doc/descriptions in readme
 # - full help for each mgmt cmd
 
-#
-# Defines Docker aliases.
-#
-# Author: Micah Elliott
-
-#
-# Aliases
-#
-
-# Set a default prefix
+# Set a short-term default prefix; unset later
 p=${SCAD_PREFIX-dd}
 
 GRC_INSTALLED=false
@@ -36,6 +33,7 @@ else
     echo
 fi
 
+# Wrapper function for select docker commands that GRC supports
 _grc() {
     if [[ -z $GRC ]]; then
         echo -e '\033[0;31mInstall GRC for docker color! https://github.com/garabik/grc\033[0m'
@@ -45,9 +43,7 @@ _grc() {
     fi
 }
 
-
-# Docker
-# alias dk='docker'
+## Docker top-level command aliases
 alias dr='docker'
 alias ${p}'?'="_${p}HELP"
 # alias ${p}'?'=ddH
@@ -63,10 +59,7 @@ alias ${p}mv='_grc docker version'
 
 alias ${p}mrmv='docker volume rm $(docker volume ls -f dangling=true -q)'
 
-
-
-
-
+######################################################################
 ## Builder (b)
 __SCAD_BUILDER_HELP="
 TODO
@@ -194,6 +187,7 @@ __SCAD_IMAGE_HELP="Docker IMAGE commands:
   ${p}irm  — Remove one or more images
   ${p}isv  — Save one or more images to a tar archive (streamed to STDOUT by default)
   ${p}it   — Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  ${p}is   — Find/search Docker Hub for images
 "
 alias ${p}i='docker image'
 alias ${p}i'?'='echo $__SCAD_IMAGE_HELP'
@@ -216,13 +210,19 @@ alias ${p}is='_grc docker search'
 
 ## Network (n)
 __SCAD_NETWORK_HELP="
-TODO
+  ${p}nc  — Create a network
+  ${p}ncr — Connect a container to a network
+  ${p}nx  — Disconnect a container from a network
+  ${p}nin — Display detailed information on one or more networks
+  ${p}nls — List networks
+  ${p}npr — Prune, remove all unused networks
+  ${p}nrm — Remove one or more networks
 "
 alias ${p}n'?'='echo $__SCAD_NETWORK_HELP'
 alias ${p}nH='docker network'
 alias ${p}n='docker network'
-alias ${p}ncr='docker network create'
 alias ${p}nc='docker network connect'
+alias ${p}ncr='docker network create'
 alias ${p}nx='docker network disconnect'
 alias ${p}nin='docker network inspect'
 alias ${p}nls='_grc docker network ls'
