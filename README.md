@@ -1,4 +1,4 @@
-#  Shell Colorized Aliases for Docker (SCAD)
+# Shell Colorized Aliases for Docker (SCAD)
 
 Docker commands ~~are~~ were tedious to type.
 
@@ -24,6 +24,7 @@ Docker command output.
 
 ```sh
 zplug "MicahElliott/scad"
+zplug "greymd/docker-zsh-completion" # and completions!
 ```
 
 ## Usage Tips
@@ -54,11 +55,12 @@ Compose and Machine are their own separate systems, and maybe Compose
 is the only one you’ll care about, so get used to typing `ddk<tab>` for
 all of its commands.
 
-Install docker zsh completions.
-
 If you’re using (any parts of) oh-my-zsh, use `CASE_SENSITIVE="true"`
 to make alias completion differentiation sane.  This way typing
 `dc<tab>` will be distinguished from `dC<tab>`.
+
+SCAD works well with [podman](https://podman.io/) too! Just:
+`alias docker=podman`, and the completions should all work fine.
 
 ## Help System
 
@@ -107,7 +109,7 @@ You can get subcommand help by invoking it with `--help`:
 ```shell
 ❯ ddcr --help
 
-Usage:	docker container run [OPTIONS] IMAGE [COMMAND] [ARG...]
+Usage: docker container run [OPTIONS] IMAGE [COMMAND] [ARG...]
 
 Run a command in a new container
 
@@ -121,7 +123,7 @@ Options:
 
 You can search all commands help.  E.g., you know there’s some command
 to show you some top-like status of your containers, but you can’t
-think it.  Use `dda` for apropos-searching.
+think of it.  Use `dda` for apropos-searching.
 
 ```shell
 ❯ dda cpu
@@ -133,6 +135,11 @@ think it.  Use `dda` for apropos-searching.
   ddcx   — Stop one or more running containers
   ddcw   — Wait/block until one or more containers stop, then print their exit codes
 ```
+
+### Alias Expansion
+
+You can see expand an alias in Zsh with `C-x a`. This is another
+useful way to inspect or edit a full command when needed.
 
 ## Author
 

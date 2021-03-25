@@ -17,6 +17,7 @@
 
 # Set a short-term default prefix; unset later
 p=${SCAD_PREFIX-dd}
+d=${SCAD_DOCKER-docker} # or maybe podman
 
 GRC_INSTALLED=false
 GRC=''
@@ -44,6 +45,7 @@ _grc() {
 }
 
 ## Docker top-level command aliases
+dkr="${DOCKER-docker}"
 alias dr='docker'
 alias ${p}'?'="_${p}HELP"
 # alias ${p}'?'=ddH
@@ -77,12 +79,12 @@ __SCAD_CONFIG_HELP="
 TODO
 "
 alias ${p}f'?'='echo $__SCAD_CONFIG_HELP'
-alias ${p}f='docker config'
-alias ${p}fH='docker config'
-alias ${p}fcr='docker config create'
-alias ${p}fin='docker config inspect'
-alias ${p}fls='docker config ls'
-alias ${p}frm='docker config rm'
+alias ${p}f="$d config"
+alias ${p}fH="$d config"
+alias ${p}fcr="$d config create"
+alias ${p}fin="$d config inspect"
+alias ${p}fls="$d config ls"
+alias ${p}frm="$d config rm"
 
 ## Container (c)
 __SCAD_CONTAINER_HELP="Docker CONTAINER commands:
@@ -120,56 +122,56 @@ __SCAD_CONTAINER_HELP="Docker CONTAINER commands:
   ${p}cw   — Wait/block until one or more containers stop, then print their exit codes
 "
 alias ${p}c'?'='echo $__SCAD_CONTAINER_HELP'
-alias ${p}cH='docker container'
+alias ${p}cH="docker container"
 # alias ${p}C='docker container'
-alias ${p}c='docker container'
-alias ${p}ca='docker container attach'
-alias ${p}cci='docker container commit'
-alias ${p}ccp='docker container cp'
-alias ${p}ccr='docker container create'
-alias ${p}cd='docker container diff'
-alias ${p}ce='docker container exec'
-alias ${p}cei='docker container exec -i -t'
-alias ${p}cex='docker container export'
-alias ${p}cin='docker container inspect'
-alias ${p}ck='docker container kill'
-alias ${p}cl='docker container logs'
-alias ${p}clf='docker container logs --follow'
-alias ${p}cls='docker container ls'
-alias ${p}clsa='docker container ls -a'
-alias ${p}cp='docker container pause'
-alias ${p}cpt='docker container port'
-alias ${p}cpr='docker container prune'
-alias ${p}crn='docker container rename'
-alias ${p}ccy='docker container restart'
-alias ${p}crm='docker container rm'
-alias ${p}cr='docker container run --rm'
-alias ${p}crD='docker container run --detach --rm --name'
-alias ${p}cri='docker container run -i -t --rm'
-alias ${p}cris='docker container run -i -t --rm --entrypoint /bin/bash'
-alias ${p}cs='docker container start'
-alias ${p}cst='docker container stats'
-alias ${p}cx='docker container stop'
-alias ${p}ctop='docker container top'
-alias ${p}cP='docker container unpause'
-alias ${p}cup='docker container update'
-alias ${p}cw='docker container wait'
+alias ${p}c="$d container"
+alias ${p}ca="$d container attach"
+alias ${p}cci="$d container commit"
+alias ${p}ccp="$d container cp"
+alias ${p}ccr="$d container create"
+alias ${p}cd="$d container diff"
+alias ${p}ce="$d container exec"
+alias ${p}cei="$d container exec -i -t"
+alias ${p}cex="$d container export"
+alias ${p}cin="$d container inspect"
+alias ${p}ck="$d container kill"
+alias ${p}cl="$d container logs"
+alias ${p}clf="$d container logs --follow"
+alias ${p}cls="$d container ls"
+alias ${p}clsa="$d container ls -a"
+alias ${p}cp="$d container pause"
+alias ${p}cpt="$d container port"
+alias ${p}cpr="$d container prune"
+alias ${p}crn="$d container rename"
+alias ${p}ccy="$d container restart"
+alias ${p}crm="$d container rm"
+alias ${p}cr="$d container run --rm"
+alias ${p}crD="$d container run --detach --rm --name"
+alias ${p}cri="$d container run -i -t --rm"
+alias ${p}cris="$d container run -i -t --rm --entrypoint /bin/sh"
+alias ${p}cs="$d container start"
+alias ${p}cst="$d container stats"
+alias ${p}cx="$d container stop"
+alias ${p}ctop="$d container top"
+alias ${p}cP="$d container unpause"
+alias ${p}cup="$d container update"
+alias ${p}cw="$d container wait"
 
 ## conteXt
 __SCAD_CONTEXT_HELP="
 TODO
 "
 alias ${p}x'?'='echo $__SCAD_CONTEXT_HELP'
-alias ${p}x='docker context'
-alias ${p}xH='docker context'
-alias ${p}xcr='docker context create'
-alias ${p}xex='docker context export'
-alias ${p}xim='docker context import'
-alias ${p}xin='docker context inspect'
-alias ${p}xls='docker context ls'
-alias ${p}xrm='docker context rm'
-alias ${p}xup='docker context update'
-alias ${p}xu='docker context use'
+alias ${p}x="$d context"
+alias ${p}xH="$d context"
+alias ${p}xcr="$d context create"
+alias ${p}xex="$d context export"
+alias ${p}xim="$d context import"
+alias ${p}xin="$d context inspect"
+alias ${p}xls="$d context ls"
+alias ${p}xrm="$d context rm"
+alias ${p}xup="$d context update"
+alias ${p}xu="$d context use"
 
 ## Image (i)
 __SCAD_IMAGE_HELP="Docker IMAGE commands:
@@ -189,24 +191,24 @@ __SCAD_IMAGE_HELP="Docker IMAGE commands:
   ${p}it   — Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
   ${p}is   — Find/search Docker Hub for images
 "
-alias ${p}i='docker image'
+alias ${p}i="$d image"
 alias ${p}i'?'='echo $__SCAD_IMAGE_HELP'
-alias ${p}iH='docker image'
-alias ${p}ib='docker image build'
-alias ${p}iB='docker image build -t'
-alias ${p}ih='docker image history'
-alias ${p}iim='docker image import'
-alias ${p}iin='docker image inspect'
-alias ${p}ild='docker image load'
-alias ${p}ils='_grc docker image ls'
-alias ${p}ipr='docker image prune'
-alias ${p}ipl='_grc docker image pull'
-alias ${p}ipu='docker image push'
-alias ${p}irm='docker image rm'
-alias ${p}isv='docker image save'
-alias ${p}it='docker image tag'
+alias ${p}iH="$d image"
+alias ${p}ib="$d image build"
+alias ${p}iB="$d image build -t"
+alias ${p}ih="$d image history"
+alias ${p}iim="$d image import"
+alias ${p}iin="$d image inspect"
+alias ${p}ild="$d image load"
+alias ${p}ils="_grc $d image ls"
+alias ${p}ipr="$d image prune"
+alias ${p}ipl="_grc $d image pull"
+alias ${p}ipu="$d image push"
+alias ${p}irm="$d image rm"
+alias ${p}isv="$d image save"
+alias ${p}it="$d image tag"
 # missing from docker
-alias ${p}is='_grc docker search'
+alias ${p}is="_grc $d search"
 
 ## Network (n)
 __SCAD_NETWORK_HELP="
@@ -219,60 +221,60 @@ __SCAD_NETWORK_HELP="
   ${p}nrm — Remove one or more networks
 "
 alias ${p}n'?'='echo $__SCAD_NETWORK_HELP'
-alias ${p}nH='docker network'
-alias ${p}n='docker network'
-alias ${p}nc='docker network connect'
-alias ${p}ncr='docker network create'
-alias ${p}nx='docker network disconnect'
-alias ${p}nin='docker network inspect'
-alias ${p}nls='_grc docker network ls'
-alias ${p}npr='docker network prune'
-alias ${p}nrm='docker network rm'
+alias ${p}nH="$d network"
+alias ${p}n="$d network"
+alias ${p}nc="$d network connect"
+alias ${p}ncr="$d network create"
+alias ${p}nx="$d network disconnect"
+alias ${p}nin="$d network inspect"
+alias ${p}nls="_grc $d network ls"
+alias ${p}npr="$d network prune"
+alias ${p}nrm="$d network rm"
 
 ## Plugin (p)
 __SCAD_PLUGIN_HELP="
 TODO
 "
 alias ${p}p'?'='echo $__SCAD_PLUGIN_HELP'
-alias ${p}pH='docker plugin'
-alias ${p}p='docker plugin'
-alias ${p}pcr='docker plugin create'
-alias ${p}pdi='docker plugin disable'
-alias ${p}pen='docker plugin enable'
-alias ${p}pin='docker plugin inspect'
-alias ${p}pi='docker plugin install'
-alias ${p}pls='docker plugin ls'
-alias ${p}ppu='docker plugin push'
-alias ${p}prm='docker plugin rm'
-alias ${p}ps='docker plugin set'
-alias ${p}pup='docker plugin upgrade'
+alias ${p}pH="$d plugin"
+alias ${p}p="$d plugin"
+alias ${p}pcr="$d plugin create"
+alias ${p}pdi="$d plugin disable"
+alias ${p}pen="$d plugin enable"
+alias ${p}pin="$d plugin inspect"
+alias ${p}pi="$d plugin install"
+alias ${p}pls="$d plugin ls"
+alias ${p}ppu="$d plugin push"
+alias ${p}prm="$d plugin rm"
+alias ${p}ps="$d plugin set"
+alias ${p}pup="$d plugin upgrade"
 
 ## Zecret (z)
 __SCAD_SECRET_HELP="
 TODO
 "
 alias ${p}z'?'='echo $__SCAD_SECRET_HELP'
-alias ${p}zH='docker secret'
-alias ${p}z='docker secret'
-alias ${p}zcr='docker secret create'
-alias ${p}zin='docker secret inspect'
-alias ${p}zls='docker secret ls'
-alias ${p}zrm='docker secret rm'
+alias ${p}zH="$d secret"
+alias ${p}z="$d secret"
+alias ${p}zcr="$d secret create"
+alias ${p}zin="$d secret inspect"
+alias ${p}zls="$d secret ls"
+alias ${p}zrm="$d secret rm"
 
 ## Trust (t)
 __SCAD_TRUST_HELP="
 TODO
 "
 alias ${p}t'?'='echo $__SCAD_TRUST_HELP'
-alias ${p}tH='docker trust'
-alias ${p}t='docker trust'
-alias ${p}tkgen='docker trust key generate'
-alias ${p}tkld='docker trust key load'
-alias ${p}tsadd='docker trust signer add'
-alias ${p}tsrm='docker trust signer remove'
-alias ${p}tin='docker trust inspect'
-alias ${p}trm='docker trust revoke'
-alias ${p}ts='docker trust sign'
+alias ${p}tH="$d trust"
+alias ${p}t="$d trust"
+alias ${p}tkgen="$d trust key generate"
+alias ${p}tkld="$d trust key load"
+alias ${p}tsadd="$d trust signer add"
+alias ${p}tsrm="$d trust signer remove"
+alias ${p}tin="$d trust inspect"
+alias ${p}trm="$d trust revoke"
+alias ${p}ts="$d trust sign"
 
 
 ## Volume (v)
@@ -280,37 +282,37 @@ __SCAD_VOLUME_HELP="
 TODO
 "
 alias ${p}v'?'='echo $__SCAD_VOLUME_HELP'
-alias ${p}vH='docker volume'
-alias ${p}v='docker volume'
-alias ${p}vc='docker volume create'
-alias ${p}vin='docker volume inspect'
-alias ${p}vls='docker volume ls'
-alias ${p}vpr='docker volume prune'
-alias ${p}vrm='docker volume rm'
+alias ${p}vH="$d volume"
+alias ${p}v="$d volume"
+alias ${p}vc="$d volume create"
+alias ${p}vin="$d volume inspect"
+alias ${p}vls="$d volume ls"
+alias ${p}vpr="$d volume prune"
+alias ${p}vrm="$d volume rm"
 
 ## System (y)
 __SCAD_SYSTEM_HELP="
 TODO
 "
 alias ${p}y'?'='echo $__SCAD_SYSTEM_HELP'
-alias ${p}yH='docker system'
-alias ${p}ye='docker system events'
-alias ${p}ydf='docker system df'
-alias ${p}yi='_grc docker system info'
-alias ${p}ypr='docker system prune'
+alias ${p}yH="$d system"
+alias ${p}ye="$d system events"
+alias ${p}ydf="$d system df"
+alias ${p}yi="_grc $d system info"
+alias ${p}ypr="$d system prune"
 
 ## Stack (k)
 __SCAD_STACK_HELP="
 TODO
 "
 alias ${p}k'?'='echo $__SCAD_STACK_HELP'
-alias ${p}kH='docker stack'
-alias ${p}k='docker stack'
-alias ${p}kd='docker stack deploy'
-alias ${p}kls='docker stack ls'
-alias ${p}kps='docker stack ps'
-alias ${p}krm='docker stack rm'
-alias ${p}ks='docker stack services'
+alias ${p}kH="$d stack"
+alias ${p}k="$d stack"
+alias ${p}kd="$d stack deploy"
+alias ${p}kls="$d stack ls"
+alias ${p}kps="$d stack ps"
+alias ${p}krm="$d stack rm"
+alias ${p}ks="$d stack services"
 
 
 # docker Kompose (k)
@@ -352,13 +354,13 @@ alias ${p}kx='docker-compose stop'
 
 ## CleanUp (rm)
 # Clean up exited containers (docker < 1.13)
-alias dkrmC='docker rm $(docker ps -qaf status=exited)'
+alias dkrmC="$d rm \$(docker ps -qaf status=exited)"
 
 # Clean up dangling images (docker < 1.13)
-alias dkrmI='docker rmi $(docker images -qf dangling=true)'
+alias dkrmI="$d rmi \$(docker images -qf dangling=true)"
 
 # Pull all tagged images
-alias dkplI='docker images --format "{{ .Repository }}" | grep -v "^<none>$" | xargs -L1 docker pull'
+alias dkplI="$d images --format \"{{ .Repository }}\" | grep -v \"^<none>$\" | xargs -L1 docker pull"
 
 # Clean up dangling volumes (docker < 1.13)
 alias dkrmV='docker volume rm $(docker volume ls -qf dangling=true)'
@@ -385,7 +387,7 @@ alias dkrmV='docker volume rm $(docker volume ls -qf dangling=true)'
 # alias dmx='docker-machine stop'
 
 
-__SCAD_TOPLEVEL_HELP="Docker Alias Help
+__SCAD_TOPLEVEL_HELP="$d Alias Help
 
 MOST COMMON
   ${p}b Builder
@@ -397,7 +399,6 @@ MOST COMMON
 LESS COMMON
   ${p}a Apropos
   ${p}f conFig
-  ${p}x conteXt
   ${p}h Help
   ${p}m Misc (one-off commands)
   ${p}p Plugin
@@ -439,4 +440,4 @@ __SCAD_HELPS=( $__SCAD_TOPLEVEL_HELP
                $__SCAD_COMPOSE_HELP )
 dda() { for h in $__SCAD_HELPS; do echo $h; done | grep -E '^  dd\w+ +— ' | grep -i --color=always $1 }
 
-unset p
+unset p d
