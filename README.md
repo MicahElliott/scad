@@ -20,7 +20,15 @@ Docker command output.
 
 ## How to Install
 
-### With [zplug][2]
+### Manually
+
+Just clone this repo and:
+
+```sh
+. path/to/scad/init.sh
+```
+
+### Or with [zplug][2]
 
 ```sh
 zplug "MicahElliott/scad"
