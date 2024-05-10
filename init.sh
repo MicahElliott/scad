@@ -101,8 +101,8 @@ __SCAD_CONTAINER_HELP="${d} CONTAINER commands:
   ${p}cex  — Export a container’s filesystem as a tar archive
   ${p}cin  — Inspec/display detailed information on one or more containers
   ${p}ck   — Kill one or more running containers
-  ${p}cl   — Logs of a container
-  ${p}cL   — Logs, in follow mode
+  ${p}clo  — Logs of a container
+  ${p}clof — Logs, in follow mode
   ${p}cl   — List containers
   ${p}cla  — List ALL containers, even those not running
   ${p}cp   — Pause all processes within one or more containers
@@ -137,8 +137,8 @@ alias ${p}cei="$d container exec -i -t"
 alias ${p}cex="$d container export"
 alias ${p}cin="$d container inspect"
 alias ${p}ck="$d container kill"
-alias ${p}cL="$d container logs"
-alias ${p}clf="$d container logs --follow"
+alias ${p}clo="$d container logs"
+alias ${p}clof="$d container logs --follow"
 alias ${p}cl="$d container ls"
 alias ${p}cla="$d container ls -a"
 alias ${p}cp="$d container pause"
@@ -330,8 +330,8 @@ alias ${p}kB="$dc build --no-cache"
 alias ${p}kd="$dc down"
 alias ${p}ke="$dc exec"
 alias ${p}kk="$dc kill"
-alias ${p}kL="$dc logs"
-alias ${p}kLf="$dc logs --follow"
+alias ${p}klo="$dc logs"
+alias ${p}klof="$dc logs --follow"
 alias ${p}kl="_grc $dc ls"
 alias ${p}kps="_grc $dc ps"
 alias ${p}kp="$dc pause"
