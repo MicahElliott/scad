@@ -47,9 +47,10 @@ _grc() {
 
 ## Docker top-level command aliases
 dkr="${DOCKER-docker}"
+# alias d=$d
 alias dr=$d
 alias ${p}'?'="_${p}HELP"
-alias ${p}="_${p}HELP"
+alias ${p}="_${p}HELP" # becomes main: alias d=...
 # alias ${p}'?'=ddH
 alias ${p}H='docker --help'
 # alias ${p}'?'='docker --help'
@@ -401,7 +402,7 @@ LESS COMMON
   ${p}a Apropos
   ${p}f conFig
   ${p}h Help
-  ${p}m Misc (one-off commands)
+  ${p}g Misc (one-off grab-bag commands)
   ${p}p Plugin
   ${p}s Service
   ${p}t Trust
