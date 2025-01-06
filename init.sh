@@ -412,7 +412,6 @@ MOST COMMON
 
 LESS COMMON
   ${p}a Apropos
-  ${p}f conFig
   ${p}h Help
   ${p}g Misc (one-off grab-bag commands)
   ${p}p Plugin
@@ -461,7 +460,6 @@ _dHELP () { echo $__SCAD_TOPLEVEL_HELP }
 __SCAD_HELPS=( $__SCAD_TOPLEVEL_HELP
                $__SCAD_CONTAINER_HELP
                $__SCAD_BUILDER_HELP
-               $__SCAD_CONFIG_HELP
                $__SCAD_NETWORK_HELP
                $__SCAD_TRUST_HELP
                $__SCAD_SYSTEM_HELP
