@@ -1,12 +1,12 @@
-# Shell Colorized Aliases for Docker (SCAD)
+# Shell Colorized Aliases for Docker/Podman (SCAD)
 
-Docker commands ~~are~~ were tedious to type.
+Docker/Podman commands ~~are~~ were tedious to type.
 
 ![dils image listing](ddils.png)
 
-This project defines [Docker][1] aliases (and a few functions) for
-shells (zsh, bash, fish), with colorized output for many commands, and
-[fuzzy completions](https://github.com/jhawthorn/fzy).
+This project defines [Docker][1]/[Podman][4] aliases (and a few functions) for
+shells (zsh, bash, fish), with colorized output for many commands, and [fuzzy
+completions](https://github.com/jhawthorn/fzy).
 
 These aliases adhere to the
 [newer style](https://blog.couchbase.com/docker-1-13-management-commands/) of
@@ -24,15 +24,8 @@ Docker command output.
 
 Just clone this repo and:
 
-```sh
+```shell
 . path/to/scad/init.sh
-```
-
-### Or with [zplug][2]
-
-```sh
-zplug "MicahElliott/scad"
-zplug "greymd/docker-zsh-completion" # and completions!
 ```
 
 ## Usage Tips
@@ -112,7 +105,8 @@ LESS COMMON
 
 The help is all built in, so these won’t be documented in this README!
 
-You can get subcommand help by invoking it with `--help`:
+You can get subcommand help by invoking it with `--help` (and often just
+`-h`):
 
 ```shell
 ❯ dcr --help
@@ -158,3 +152,4 @@ useful way to inspect or edit a full command when needed.
 [1]: https://www.docker.com/
 [2]: https://github.com/zplug/zplug
 [3]: https://github.com/MicahElliott/scad/issues
+[4]: https://podman.io/

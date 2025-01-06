@@ -37,12 +37,8 @@ fi
 
 # Wrapper function for select docker commands that GRC supports
 _grc() {
-    if [[ -z $GRC ]]; then
-        echo -e '\033[0;31mInstall GRC for docker color! https://github.com/garabik/grc\033[0m'
-        $@
-    else
-        grc $@
-    fi
+    if [[ -z $GRC ]]; then echo -e '\033[0;31mInstall GRC for docker color! https://github.com/garabik/grc\033[0m'; $@
+    else                   grc -c $@; fi
 }
 
 ## Docker top-level command aliases
@@ -55,13 +51,12 @@ alias ${p}="_${p}HELP" # becomes main: alias d=...
 alias ${p}H='docker --help'
 # alias ${p}'?'='docker --help'
 
-## Misc (m)
+## Misc (m) (grab-bag)
 # alias dmdf=''
 # alias dme=''
 # alias dm=''
-alias ${p}ms='_grc docker search'
-alias ${p}mv='_grc docker version'
-
+# alias ${p}gs='_grc docker search'
+alias ${p}gv='_grc conf.dockerversion docker version'
 alias ${p}mrmv='docker volume rm $(docker volume ls -f dangling=true -q)'
 
 ######################################################################
@@ -70,24 +65,26 @@ __SCAD_BUILDER_HELP="
 TODO
 "
 alias ${p}b'?'='echo $__SCAD_BUILDER_HELP'
-alias ${p}bH="${d} builder"
-alias ${p}b="${d} builder"
-alias ${p}bH="${d} builder   build --help"
-alias ${p}bb="_grc ${d} builder build"
-alias ${p}bB="_grc ${d} builder build --tag"
-alias ${p}bpr="${d} builder prune"
+alias ${p}bH="$d builder"
+alias ${p}b="$d builder"
+alias ${p}bH="$d builder   build --help"
+# alias ${p}bb="_grc ${d} builder build"
+# alias ${p}bB="_grc ${d} builder build --tag"
+alias ${p}bb="$d builder build"
+alias ${p}bB="$d builder build --tag"
+alias ${p}bpr="$d builder prune"
 
-## conFig (f)
-__SCAD_CONFIG_HELP="
-TODO
-"
-alias ${p}f'?'='echo $__SCAD_CONFIG_HELP'
-alias ${p}f="$d config"
-alias ${p}fH="$d config"
-alias ${p}fcr="$d config create"
-alias ${p}fi="$d config inspect"
-alias ${p}fl="$d config ls"
-alias ${p}frm="$d config rm"
+# ## conFig (f) (swarm)
+# __SCAD_CONFIG_HELP="
+# TODO
+# "
+# alias ${p}f'?'='echo $__SCAD_CONFIG_HELP'
+# alias ${p}f="$d config"
+# alias ${p}fH="$d config"
+# alias ${p}fcr="$d config create"
+# alias ${p}fi="$d config inspect"
+# alias ${p}fl="$d config ls"
+# alias ${p}frm="$d config rm"
 
 ## Container (c)
 __SCAD_CONTAINER_HELP="${d} CONTAINER commands:
@@ -100,7 +97,7 @@ __SCAD_CONTAINER_HELP="${d} CONTAINER commands:
   ${p}ce   — Exec-run a command in a running container
   ${p}cei  — Exec-run interactive tty
   ${p}cex  — Export a container’s filesystem as a tar archive
-  ${p}cin  — Inspec/display detailed information on one or more containers
+  ${p}cin  — Inspect/display detailed information on one or more containers
   ${p}ck   — Kill one or more running containers
   ${p}clo  — Logs of a container
   ${p}clof — Logs, in follow mode
@@ -140,8 +137,8 @@ alias ${p}cin="$d container inspect"
 alias ${p}ck="$d container kill"
 alias ${p}clo="$d container logs"
 alias ${p}clof="$d container logs --follow"
-alias ${p}cl="$d container ls"
-alias ${p}cla="$d container ls -a"
+alias ${p}cl="_grc conf.dockerps $d container ls"
+alias ${p}cla="_grc conf.dockerps $d container ls -a"
 alias ${p}cp="$d container pause"
 alias ${p}cpt="$d container port"
 alias ${p}cpr="$d container prune"
@@ -185,6 +182,7 @@ __SCAD_IMAGE_HELP="${d} IMAGE commands:
   ${p}iim  — Import the contents from a tarball to create a filesystem image
   ${p}ii   — Display detailed information on one or more images
   ${p}il   — List images
+  ${p}ila  — List all images
   ${p}ild  — Load an image from a tar archive or STDIN
   ${p}ipr  — Remove unused images
   ${p}ipl  — Pull an image or a repository from a registry
@@ -194,27 +192,27 @@ __SCAD_IMAGE_HELP="${d} IMAGE commands:
   ${p}it   — Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
   ${p}is   — Find/search Docker Hub for images
 "
-alias ${p}i="$d image"
 alias ${p}i'?'='echo $__SCAD_IMAGE_HELP'
+alias ${p}i="$d image"
 alias ${p}iH="$d image"
 alias ${p}ib="$d image build"
 alias ${p}iB="$d image build -t"
 alias ${p}ih="$d image history"
 alias ${p}iim="$d image import"
 alias ${p}ii="$d image inspect"
-alias ${p}il="_grc $d image ls"
+alias ${p}il="_grc conf.dockerimages $d image ls"
 alias ${p}ild="$d image load"
 alias ${p}ipr="$d image prune"
-alias ${p}ipl="_grc $d image pull"
+alias ${p}ipl="$d image pull"
 alias ${p}ipu="$d image push"
 alias ${p}irm="$d image rm"
 alias ${p}isv="$d image save"
 alias ${p}it="$d image tag"
 # missing from docker
-alias ${p}is="_grc $d search"
+alias ${p}is="_grc conf.dockersearch $d search"
 
 ## Network (n)
-__SCAD_NETWORK_HELP="
+__SCAD_NETWORK_HELP="${d} NETWORK commands:
   ${p}nc   — Connect a container to a network
   ${p}ncr  — Create a network
   ${p}nx   — Disconnect a container from a network
@@ -224,13 +222,13 @@ __SCAD_NETWORK_HELP="
   ${p}nrm  — Remove one or more networks
 "
 alias ${p}n'?'='echo $__SCAD_NETWORK_HELP'
-alias ${p}nH="$d network"
 alias ${p}n="$d network"
+alias ${p}nH="$d network"
 alias ${p}nc="$d network connect"
 alias ${p}ncr="$d network create"
 alias ${p}nx="$d network disconnect"
 alias ${p}ni="$d network inspect"
-alias ${p}nl="_grc $d network ls"
+alias ${p}nl="_grc conf.dockernetwork $d network ls"
 alias ${p}npr="$d network prune"
 alias ${p}nrm="$d network rm"
 
@@ -239,8 +237,8 @@ __SCAD_PLUGIN_HELP="
 TODO
 "
 alias ${p}p'?'='echo $__SCAD_PLUGIN_HELP'
-alias ${p}pH="$d plugin"
 alias ${p}p="$d plugin"
+alias ${p}pH="$d plugin"
 alias ${p}pcr="$d plugin create"
 alias ${p}pdi="$d plugin disable"
 alias ${p}pen="$d plugin enable"
@@ -257,8 +255,8 @@ __SCAD_SECRET_HELP="
 TODO
 "
 alias ${p}z'?'='echo $__SCAD_SECRET_HELP'
-alias ${p}zH="$d secret"
 alias ${p}z="$d secret"
+alias ${p}zH="$d secret"
 alias ${p}zcr="$d secret create"
 alias ${p}zi="$d secret inspect"
 alias ${p}zl="$d secret ls"
@@ -281,41 +279,57 @@ alias ${p}ts="$d trust sign"
 
 
 ## Volume (v)
-__SCAD_VOLUME_HELP="
-TODO
+__SCAD_VOLUME_HELP="${d} VOLUME commands:
+  ${p}vcr  — Create a new volume
+  ${p}ve   — Check if volume exists
+  ${p}vex  — Export volumes
+  ${p}vim  — Import a tarball contents into a podman volume
+  ${p}vi   — Display detailed information on one or more volumes
+  ${p}vl   — List volumes
+  ${p}vm   — Mount volume
+  ${p}vpr  — Remove all unused volumes
+  ${p}vre  — Reload all volumes from volume plugins
+  ${p}vrm  — Remove one or more volumes
+  ${p}vun  — Unmount volume
 "
 alias ${p}v'?'='echo $__SCAD_VOLUME_HELP'
 alias ${p}vH="$d volume"
 alias ${p}v="$d volume"
 alias ${p}vcr="$d volume create"
+alias ${p}ve="$d volume exists"
+alias ${p}vex="$d volume export"
+alias ${p}vim="$d volume import"
 alias ${p}vi="$d volume inspect"
 alias ${p}vl="$d volume ls"
-alias ${p}vpr="$d volume prune"
+alias ${p}vm="$d volume mount"
+alias ${p}vre="$d volume reload"
 alias ${p}vrm="$d volume rm"
+alias ${p}vu="$d volume unmount"
 
 ## System (y)
 __SCAD_SYSTEM_HELP="
 TODO
 "
 alias ${p}y'?'='echo $__SCAD_SYSTEM_HELP'
+alias ${p}y="$d system"
 alias ${p}yH="$d system"
 alias ${p}ye="$d system events"
 alias ${p}ydf="$d system df"
-alias ${p}yi="_grc $d system info"
+alias ${p}yi="_grc conf.dockerinfo $d system info"
 alias ${p}ypr="$d system prune"
 
-## Stack (k)
-__SCAD_STACK_HELP="
-TODO
-"
-alias ${p}k'?'='echo $__SCAD_STACK_HELP'
-alias ${p}kH="$d stack"
-alias ${p}k="$d stack"
-alias ${p}kd="$d stack deploy"
-alias ${p}kl="$d stack ls"
-alias ${p}kps="$d stack ps"
-alias ${p}krm="$d stack rm"
-alias ${p}ks="$d stack services"
+# ## Stack (k) (swarm)
+# __SCAD_STACK_HELP="
+# TODO
+# "
+# alias ${p}k'?'='echo $__SCAD_STACK_HELP'
+# alias ${p}kH="$d stack"
+# alias ${p}k="$d stack"
+# alias ${p}kd="$d stack deploy"
+# alias ${p}kl="$d stack ls"
+# alias ${p}kps="$d stack ps"
+# alias ${p}krm="$d stack rm"
+# alias ${p}ks="$d stack services"
 
 
 # docker Kompose (k)
@@ -325,7 +339,6 @@ TODO
 alias ${p}k'?'='echo $__SCAD_COMPOSE_HELP'
 alias ${p}kH="$dc"
 alias ${p}k="$dc"
-alias ${p}k="$dc"
 alias ${p}kb="$dc build"
 alias ${p}kB="$dc build --no-cache"
 alias ${p}kd="$dc down"
@@ -333,13 +346,12 @@ alias ${p}ke="$dc exec"
 alias ${p}kk="$dc kill"
 alias ${p}klo="$dc logs"
 alias ${p}klof="$dc logs --follow"
-alias ${p}kl="_grc $dc ls"
-alias ${p}kps="_grc $dc ps"
+# alias ${p}kl="_grc $dc ls"
+alias ${p}kps="_grc conf.dockerps $dc ps"
 alias ${p}kp="$dc pause"
 alias ${p}kP="$dc unpause"
 alias ${p}kpl="$dc pull"
 alias ${p}kph="$dc push"
-alias ${p}kps="$dc ps"
 alias ${p}kr="$dc run"
 alias ${p}kR="$dc run --rm"
 alias ${p}krm="$dc rm"
@@ -407,7 +419,6 @@ LESS COMMON
   ${p}s Service
   ${p}t Trust
   ${p}y sYstem
-  ${p}a stAck
   ${p}x conteXt
   ${p}z Zecret
 
@@ -428,7 +439,20 @@ TIPS
   - Put additional command options at the end of any alias
   - Add a '?' to the end of any command
   - Use '^x a' to auto-expand the alias
-  - Put 'export SCAD_DOCKER=podman' in your shell startup file"
+  - Put 'export SCAD_DOCKER=podman' in your shell startup file
+
+INFO COMMANDS
+  dil                               ## list images
+  dih docker.io/library/rabbitmq:3  ## history
+  dii docker.io/library/rabbitmq:3  ## image config
+  dce myrabbit env  ## print environment
+  dcst myrabbit     ## live status
+  dctop myrabbit    ## running process list
+  dclo myrabbit     ## logs
+  dni   ## network info
+  dvi   ## volume info
+  dyi   ## system info (long)
+  dydf  ## storage info"
 
 
 _dHELP () { echo $__SCAD_TOPLEVEL_HELP }
