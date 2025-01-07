@@ -59,20 +59,20 @@ alias ${p}H='docker --help'
 alias ${p}gv='_grc conf.dockerversion docker version'
 alias ${p}mrmv='docker volume rm $(docker volume ls -f dangling=true -q)'
 
-######################################################################
-## Builder (b)
-__SCAD_BUILDER_HELP="
-TODO
-"
-alias ${p}b'?'='echo $__SCAD_BUILDER_HELP'
-alias ${p}bH="$d builder"
-alias ${p}b="$d builder"
-alias ${p}bH="$d builder   build --help"
-# alias ${p}bb="_grc ${d} builder build"
-# alias ${p}bB="_grc ${d} builder build --tag"
-alias ${p}bb="$d builder build"
-alias ${p}bB="$d builder build --tag"
-alias ${p}bpr="$d builder prune"
+# ######################################################################
+# ## Builder (b)
+# __SCAD_BUILDER_HELP="
+# TODO
+# "
+# alias ${p}b'?'='echo $__SCAD_BUILDER_HELP'
+# alias ${p}bH="$d builder"
+# alias ${p}b="$d builder"
+# alias ${p}bH="$d builder   build --help"
+# # alias ${p}bb="_grc ${d} builder build"
+# # alias ${p}bB="_grc ${d} builder build --tag"
+# alias ${p}bb="$d builder build"
+# alias ${p}bB="$d builder build --tag"
+# alias ${p}bpr="$d builder prune"
 
 # ## conFig (f) (swarm)
 # __SCAD_CONFIG_HELP="
@@ -133,7 +133,7 @@ alias ${p}cd="$d container diff"
 alias ${p}ce="$d container exec"
 alias ${p}cei="$d container exec -i -t"
 alias ${p}cex="$d container export"
-alias ${p}cin="$d container inspect"
+alias ${p}ci="$d container inspect"
 alias ${p}ck="$d container kill"
 alias ${p}clo="$d container logs"
 alias ${p}clof="$d container logs --follow"
@@ -177,10 +177,11 @@ alias ${p}xu="$d context use"
 __SCAD_IMAGE_HELP="${d} IMAGE commands:
   ${p}i    — Invoke the bare ${d} image command
   ${p}ib   — Build an image from a Dockerfile
+  ${p}ibr  — Build an image from a Dockerfile, removing intermediates
   ${p}iB   — Build an image with a tag
   ${p}ih   — Show the history of an image
   ${p}iim  — Import the contents from a tarball to create a filesystem image
-  ${p}ii   — Display detailed information on one or more images
+  ${p}ii   — Inspect/display detailed information on one or more images
   ${p}il   — List images
   ${p}ila  — List all images
   ${p}ild  — Load an image from a tar archive or STDIN
@@ -195,8 +196,9 @@ __SCAD_IMAGE_HELP="${d} IMAGE commands:
 alias ${p}i'?'='echo $__SCAD_IMAGE_HELP'
 alias ${p}i="$d image"
 alias ${p}iH="$d image"
-alias ${p}ib="$d image build"
-alias ${p}iB="$d image build -t"
+# alias ${p}ib="$d image build"
+alias ${p}ib="$d image build -t"
+alias ${p}ibr="$d image build --rm -t"
 alias ${p}ih="$d image history"
 alias ${p}iim="$d image import"
 alias ${p}ii="$d image inspect"
@@ -404,9 +406,8 @@ alias dkrmV='docker volume rm $(docker volume ls -qf dangling=true)'
 __SCAD_TOPLEVEL_HELP="$d Alias Help
 
 MOST COMMON
-  ${p}b Builder
   ${p}c Container
-  ${p}i Image
+  ${p}i Image (search, list, inspect, build)
   ${p}n Network
   ${p}v Volume
 
@@ -440,18 +441,24 @@ TIPS
   - Use '^x a' to auto-expand the alias
   - Put 'export SCAD_DOCKER=podman' in your shell startup file
 
-INFO COMMANDS
+INFO EXAMPLES
   dil                               ## list images
   dih docker.io/library/rabbitmq:3  ## history
   dii docker.io/library/rabbitmq:3  ## image config
-  dce myrabbit env  ## print environment
-  dcst myrabbit     ## live status
-  dctop myrabbit    ## running process list
-  dclo myrabbit     ## logs
+  dce   myrabbit env     ## print environment (via exec)
+  dcst  myrabbit         ## live status
+  dci   myrabbit | jq …  ## inspect many details
+  dctop myrabbit         ## running process list
+  dclo  myrabbit         ## examine logs
   dni   ## network info
   dvi   ## volume info
   dyi   ## system info (long)
-  dydf  ## storage info"
+  dydf  ## storage info
+
+ACTION EXAMPLES
+  dibr mydeb .       ## build and tag an image
+  dce  myrabbit cmd  ## exec cmd
+  dcri -e MYVAR=1 --network=host -v ${PWD}:/data localhost/mydeb somecmd"
 
 
 _dHELP () { echo $__SCAD_TOPLEVEL_HELP }
